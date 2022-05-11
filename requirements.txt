@@ -1,0 +1,4 @@
+Django @ file:///tmp/build/80754af9/django_1625585912945/work
+django-cors-headers==3.12.0
+djangorestframework @ file:///home/conda/feedstock_root/build_artifacts/djangorestframework_1639677796037/work
+
