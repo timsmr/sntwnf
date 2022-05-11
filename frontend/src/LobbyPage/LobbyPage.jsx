@@ -23,7 +23,7 @@ const LobbyPage = () => {
 					Открыть
 				</button>
 
-				{showHint ? <p className="fw-light text-white">Подсказка</p> : null}
+				{showHint ? <p className="fw-light text-white">Ваня любит огромные черные члены</p> : null}
 			</div>
 		</div>
 	);
