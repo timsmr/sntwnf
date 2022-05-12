@@ -34,6 +34,7 @@ class Guest(models.Model):
     name = models.CharField(max_length=50)
     preferences = models.TextField(max_length=250, null=True, blank=True)
     lobby = models.ForeignKey('Lobby', on_delete=models.CASCADE)
+    is_host = models.BooleanField(default=False)
 
     def __str__(self):
         return self.email

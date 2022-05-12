@@ -3,7 +3,6 @@ from .models import Lobby, Guest
 from .serializers import LobbySerializer, GuestSerializer
 
 
-
 def get_lobbies(request):
     lobbies = Lobby.objects.all().order_by('-created')
     serializer = LobbySerializer(lobbies, many=True)
@@ -35,6 +34,7 @@ def create_lobby(request):
     if 'preferences' in data:
         host.preferences = data['preferences']
     host.lobby = lobby
+    host.is_host = True
     host.save()
     return Response('Lobby was created!')
 
@@ -58,3 +58,15 @@ def delete_guest(request, pk):
     guest = Guest.objects.get(id=pk)
     guest.delete()
     return Response('Guest was deleted!')
+
+
+def lobby_guests(request, pk):
+    guests = Guest.objects.filter(lobby=pk).order_by('id')
+    serializer = GuestSerializer(guests, many=True)
+    return Response(serializer.data)
+
+
+def shuffle(request, pk):
+    guests = Guest.objects.filter(lobby=pk).order_by('?')
+    serializer = GuestSerializer(guests, many=True)
+    return Response(serializer.data)

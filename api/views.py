@@ -68,6 +68,18 @@ def get_routes(request):
             'body': None,
             'description': 'Deletes and exiting guest from the lobby'
         },
+        {
+            'Endpoint': '/lobby/id/guests/',
+            'method': 'GET',
+            'body': None,
+            'description': 'Returns an array of guests in a particular lobby'
+        },
+        {
+            'Endpoint': '/lobby/id/shuffle/',
+            'method': 'GET',
+            'body': None,
+            'description': 'Shuffles the guest list'
+        },
     ]
 
     return Response(routes)
@@ -105,3 +117,13 @@ def manage_guest(request, pk):
 
     if request.method == 'DELETE':
         return delete_guest(request, pk)
+
+
+@api_view(['GET'])
+def get_guests_lobby(request, pk):
+    return lobby_guests(request, pk)
+
+
+@api_view(['GET'])
+def shuffle_lobby(request, pk):
+    return shuffle(request, pk)
