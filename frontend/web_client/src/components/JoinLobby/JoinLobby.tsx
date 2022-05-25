@@ -1,6 +1,6 @@
-import React from "react";
 import styles from "./joinlobby.module.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function JoinLobby() {
   const [lobbyExists, setLobbyExists] = useState(false);
@@ -11,12 +11,6 @@ export default function JoinLobby() {
     preferences: "",
     lobby: "",
   });
-
-  //   useEffect(() => {
-  //     fetch("http://127.0.0.1:8000/api/lobby/dapdtg")
-  //       .then((resp) => resp.json())
-  //       .then((data) => console.log(data));
-  //   }, []);
 
   const checkIfLobbyExists = () => {
     if (form.lobby) {
@@ -33,13 +27,10 @@ export default function JoinLobby() {
         .then((data) => console.log(data))
         .catch((err) => console.log(err));
     }
-    console.log(errorCode);
   };
 
   const handleSubmit = () => {
     const json = JSON.stringify(form);
-
-    console.log(json);
     fetch("http://127.0.0.1:8000/api/guest/", {
       method: "POST",
       body: json,
@@ -114,7 +105,9 @@ export default function JoinLobby() {
               className="btn btn-primary mt-3"
               onClick={handleSubmit}
             >
-              Войти
+              <Link to={`/lobby/${form.lobby}`} onClick={handleSubmit}>
+                Войти
+              </Link>
             </button>
           </>
         )}

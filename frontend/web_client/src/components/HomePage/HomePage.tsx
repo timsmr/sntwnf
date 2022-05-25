@@ -10,7 +10,7 @@ export default function HomePage() {
         <Link to="/join_lobby">Войти</Link>
       </button>
       <button type="button" className="btn btn-light">
-        Создать
+        <Link to="/create_lobby">Создать</Link>
       </button>
     </div>
   );
