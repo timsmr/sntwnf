@@ -1,3 +1,5 @@
+from functools import partial
+from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -41,7 +43,7 @@ def get_routes(request):
             'description': 'Creates new lobby and new user (AKA host/admin) with data sent in post request'
         },
         {
-            'Endpoint': '/notes/id/',
+            'Endpoint': '/lobby/id/',
             'method': 'DELETE',
             'body': None,
             'description': 'Deletes and exiting lobby and all guests'
@@ -76,7 +78,7 @@ def get_routes(request):
             'description': 'Deletes and exiting guest from the lobby'
         },
         {
-            'Endpoint': '/lobby/id/guests/',
+            'Endpoint': '/lobby/id/guest/',
             'method': 'GET',
             'body': None,
             'description': 'Returns an array of guests in a particular lobby'
@@ -85,7 +87,13 @@ def get_routes(request):
             'Endpoint': '/lobby/id/shuffle/',
             'method': 'GET',
             'body': None,
-            'description': 'Shuffles the guest list'
+            'description': 'Shuffles the guest list and updates Lobby and Guests giving_to field'
+        },
+        {
+            'Endpoint': '/lobby/id/?email="..."',
+            'method': 'GET',
+            'body': None,
+            'description': 'Shuffles the guest list and updates Lobby and Guests giving_to field'
         },
     ]
 
@@ -147,6 +155,26 @@ def get_guests(request):
 @api_view(['GET', 'DELETE'])
 def manage_lobby(request, pk):
     if request.method == 'GET':
+        if request.GET.get('email'):
+            lobby = Lobby.objects.get(code=pk)
+            guest = Guest.objects.get(lobby=pk, email=request.GET.get('email'))
+            giving = guest.giving_to
+            serializer = GuestSerializer(guest)
+            if lobby.started:
+                message = {
+                    'started': True,
+                    'giving_to': {
+                        'name': f'{giving.name}',
+                        'preferences': f'{giving.preferences}'
+                    }
+                    
+                }
+            else:
+                message = {
+                    'started': False
+                }
+            return Response(message)
+    
         lobby = Lobby.objects.get(code=pk)
         serializer = LobbySerializer(lobby)
         return Response(serializer.data)
@@ -154,7 +182,7 @@ def manage_lobby(request, pk):
     if request.method == 'DELETE':
         lobby = Lobby.objects.get(code=pk)
         lobby.delete()
-        return Response('Lobby was deleted!')
+        return Response('Lobby was deleted!', status=status.HTTP_204_NO_CONTENT)
 
 
 @api_view(['GET', 'DELETE'])
@@ -167,7 +195,7 @@ def manage_guest(request, pk):
     if request.method == 'DELETE':
         guest = Guest.objects.get(id=pk)
         guest.delete()
-        return Response('Guest was deleted!')
+        return Response('Guest was deleted!', status=status.HTTP_204_NO_CONTENT)
 
 
 @api_view(['GET'])
@@ -177,9 +205,15 @@ def get_guests_lobby(request, pk):
     return Response(serializer.data)
 
 
-
 @api_view(['GET'])
 def shuffle_lobby(request, pk):
     guests = Guest.objects.filter(lobby=pk).order_by('?')
+    lobby = Lobby.objects.get(code=pk)
+    lobby.started = True
+    lobby.save()
+    for i, guest in enumerate(guests):
+        guest.giving_to = guests[(i + 1) % len(guests)]
+        guest.save()
     serializer = GuestSerializer(guests, many=True)
+    
     return Response(serializer.data)

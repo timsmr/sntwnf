@@ -60,7 +60,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'frontend/build/'
+            BASE_DIR / 'frontend/web_client/build/'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'frontend/build/static'
+    BASE_DIR / 'frontend/web_client/build/static'
 ]
 
 # Default primary key field type

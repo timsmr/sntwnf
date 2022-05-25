@@ -20,6 +20,7 @@ class Lobby(models.Model):
     name = models.CharField(max_length=50)
     event_date = models.DateField()
     created = models.DateField(auto_now_add=True)
+    started = models.BooleanField(default=False)
     
     def __str__(self):
         return self.code
@@ -35,6 +36,7 @@ class Guest(models.Model):
     preferences = models.TextField(max_length=250, null=True, blank=True)
     lobby = models.ForeignKey('Lobby', on_delete=models.CASCADE)
     is_host = models.BooleanField(default=False)
+    giving_to = models.ForeignKey('Guest', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.email
