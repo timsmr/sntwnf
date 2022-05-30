@@ -104,7 +104,7 @@ export default function CreateLobby() {
           Создать
         </button>
         {newCode && (
-          <Link to={`/admin_lobby/${newCode}`}>
+          <Link to={`/admin_lobby/${form.guest.email}/${newCode}`}>
             <svg viewBox="0 0 24 24">
               <path
                 fill="currentColor"

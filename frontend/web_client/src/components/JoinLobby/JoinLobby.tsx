@@ -14,7 +14,7 @@ export default function JoinLobby() {
 
   const checkIfLobbyExists = () => {
     if (form.lobby) {
-      fetch(`http://127.0.0.1:8000/api/lobby/${form.lobby}`)
+      fetch(`http://127.0.0.1:8000/api/lobby/${form.lobby}/`)
         .then((resp) => {
           if (resp.ok) {
             setLobbyExists(true);
@@ -30,6 +30,7 @@ export default function JoinLobby() {
   };
 
   const handleSubmit = () => {
+    console.log("object");
     const json = JSON.stringify(form);
     fetch("http://127.0.0.1:8000/api/guest/", {
       method: "POST",
@@ -105,9 +106,7 @@ export default function JoinLobby() {
               className="btn btn-primary mt-3"
               onClick={handleSubmit}
             >
-              <Link to={`/lobby/${form.lobby}`} onClick={handleSubmit}>
-                Войти
-              </Link>
+              <Link to={`/lobby/${form.lobby}/${form.email}`}>Войти</Link>
             </button>
           </>
         )}
