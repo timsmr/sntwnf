@@ -13,9 +13,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/join_lobby" element={<JoinLobby />} />
-        <Route path="/lobby/:id" element={<LobbyPage />} />
+        <Route path="/lobby/:id/:email" element={<LobbyPage />} />
         <Route path="/create_lobby" element={<CreateLobby />} />
-        <Route path="/admin_lobby/:id" element={<AdminLobbyPage />} />
+        <Route path="/admin_lobby/:email/:id" element={<AdminLobbyPage />} />
       </Routes>
     </Router>
   );
