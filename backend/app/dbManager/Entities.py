@@ -40,9 +40,9 @@ class GuestEntity(Base):
     __tablename__ = "guest"
 
     id = Column(Integer, index=True, primary_key=True, autoincrement=True)
-    lobby_id = Column(Integer, ForeignKey("Lobby.id"), nullable=False)
-    user_id = Column(Integer, ForeignKey("user_account.id"), nullable=False)
-    giving_to = Column(Integer, ForeignKey("user_account.id"), nullable=False)
+    lobby_id = Column(Integer, ForeignKey("Lobby.id", ondelete="cascade"), nullable=False)
+    user_id = Column(Integer, ForeignKey("user_account.id", ondelete="cascade"), nullable=False)
+    giving_to = Column(Integer, ForeignKey("user_account.id"), nullable=True)
     is_host = Column(Boolean)
 
     def __repr__(self):
