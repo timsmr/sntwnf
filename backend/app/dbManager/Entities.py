@@ -10,7 +10,7 @@ from sqlalchemy import Boolean
 Base = declarative_base()
 
 
-class Lobby(Base):
+class LobbyEntity(Base):
     __tablename__ = "Lobby"
 
     id = Column(Integer, index=True, primary_key=True, autoincrement=True)
@@ -23,7 +23,7 @@ class Lobby(Base):
         return f"Lobby(id={self.id!r}, name={self.name!r})"
 
 
-class User(Base):
+class UserEntity(Base):
     __tablename__ = "user_account"
 
     id = Column(Integer, index=True, primary_key=True, autoincrement=True)
@@ -36,7 +36,7 @@ class User(Base):
         return f"User(id={self.id!r}, name={self.name!r})"
 
 
-class Guest(Base):
+class GuestEntity(Base):
     __tablename__ = "guest"
 
     id = Column(Integer, index=True, primary_key=True, autoincrement=True)
