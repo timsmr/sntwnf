@@ -26,3 +26,9 @@ def get_lobby(lobby_id: int):
 async def create_lobby(body: LobbyModel):
     service.add_row(body=body)
     return {"status": "ok"}
+
+
+@router.delete("/delete_lobby/{lobby_id}")
+async def delete_lobby(lobby_id: int):
+    service.delete_row(entity=LobbyEntity, id=lobby_id)
+    return {"status": "ok"}

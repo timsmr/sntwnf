@@ -28,3 +28,9 @@ def get_guest(guest_id: int):
 async def create_guest(body: GuestModel):
     service.add_row(body=body)
     return {"status": "ok"}
+
+
+@router.delete("/delete_guest/{guest_id}")
+async def delete_guest(guest_id: int):
+    service.delete_row(entity=GuestEntity, id=guest_id)
+    return {"status": "ok"}

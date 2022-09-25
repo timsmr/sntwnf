@@ -6,3 +6,8 @@ class BaseService():
 
     def get_row(self, entity, id):
         return session.query(entity).filter_by(id=id).order_by(entity.id).first()
+
+
+    def delete_row(self, entity, id):
+        session.query(entity).filter_by(id=id).delete()
+        return True
