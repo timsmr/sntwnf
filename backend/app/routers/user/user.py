@@ -35,3 +35,8 @@ async def create_user(body: UserModel):
 async def delete_lobby(user_id: int):
     service.delete_row(entity=UserEntity, id=user_id)
     return {"status": "ok"}
+
+
+@router.get("/active_lobbies/{user_id}")
+async def get_active_lobbies(user_id: int):
+    return service.get_active_lobbies(user_id=user_id)
