@@ -32,3 +32,13 @@ async def create_lobby(body: LobbyModel):
 async def delete_lobby(lobby_id: int):
     service.delete_row(entity=LobbyEntity, id=lobby_id)
     return {"status": "ok"}
+
+
+@router.get("/lobby_guests/{lobby_id}")
+async def get_lobby_guests(lobby_id: int):
+    return service.get_lobby_guests(lobby_id=lobby_id)
+
+
+@router.get("/lobby_host/{lobby_id}")
+async def get_lobby_host(lobby_id: int):
+    return service.get_lobby_host(lobby_id=lobby_id)

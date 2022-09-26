@@ -9,7 +9,6 @@ class GuestService(BaseService):
         created_guest = GuestEntity(
             lobby_id=body.lobby_id,
             user_id=body.user_id,
-            giving_to=body.giving_to,
             is_host=body.is_host
         )
         session.add_all([created_guest])
