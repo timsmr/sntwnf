@@ -46,7 +46,7 @@ class GuestEntity(Base):
     is_host = Column(Boolean)
 
     def __repr__(self):
-        return f"Guest(id={self.user_id!r}, giving to {self.giving_to!r})"
+        return f"Guest(id={self.id!r}, user_id={self.user_id!r}, giving to {self.giving_to!r})"
 
 
 target_metadata = Base.metadata
