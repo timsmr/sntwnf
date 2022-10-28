@@ -1,0 +1,36 @@
+@import 'libs/normalize';
+@import 'variables';
+@import './components/all';
+
+/* APP */
+
+.mb-15 {
+    margin-bottom: 15px !important;
+}
+
+.mb-23 {
+    margin-bottom: 23px !important;
+}
+
+.mb-40 {
+    margin-bottom: 40px !important;
+}
+
+.mb-100 {
+    margin-bottom: 100px !important;
+}
+
+.mt-10 {
+    margin-top: 10px !important;
+}
+
+.mr-70 {
+    margin-right: 70px;
+}
+
+.wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

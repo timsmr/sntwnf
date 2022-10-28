@@ -1,0 +1,26 @@
+@import '../../../scss/variables';
+
+.inputField {
+    padding: 0 20px;
+    height: 50px;
+    width: 300px;
+    font-size: 22px;
+    line-height: 1;
+    color: $header;
+    background-color: $form-background;
+    border: none;
+    border-radius: $form-border-radius;
+    cursor: pointer;
+
+    &::placeholder {
+        color: $form-text;
+    }
+
+    &:hover {
+        outline: 1px solid $form-hover-border-color;
+    }
+
+    &:focus {
+        outline: 2px solid $form-focus-border-color;
+    }
+}
