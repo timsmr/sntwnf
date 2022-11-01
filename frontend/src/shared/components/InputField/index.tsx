@@ -4,13 +4,15 @@ import cn from 'classnames'
 
 type InputFieldProps = React.HTMLAttributes<HTMLInputElement> & {
     inputType?: 'text' | 'date' | 'password';
+    inputStyle?: string;
     inputPlaceholder: string;
     inputMaxLength?: number;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ inputType = 'text', inputPlaceholder, inputMaxLength, className }) => {
+const InputField = ({ inputType = 'text', inputStyle = '', inputPlaceholder, inputMaxLength, className }: InputFieldProps) => {
     const inputStyles = cn(
         styles.inputField,
+        styles[`style_${inputStyle}`],
         className
     )
 

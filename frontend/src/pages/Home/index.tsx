@@ -3,6 +3,7 @@ import cn from 'classnames'
 
 import styles from './index.module.scss'
 import Button from '../../shared/components/Button'
+import { Link } from 'react-router-dom'
 
 type HomeProps = React.HTMLAttributes<HTMLDivElement> & {}
 
@@ -16,8 +17,13 @@ const Home: React.FC<HomeProps> = ({ className }) => {
     <div className={homeStyles}>
       <h1>тайный санта</h1>
       <div className='button-block'>
-        <Button className='mr-70' label='Войти' />
-        <Button label='Создать' />
+        <Link to='/join'>
+          <Button className='mr-70' label='Войти' />
+        </Link>
+
+        <Link to='/create'>
+          <Button label='Создать' />
+        </Link>
       </div>
     </div>
   )

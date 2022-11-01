@@ -1,14 +1,16 @@
 import React from 'react'
 import cn from 'classnames'
+import { Link } from 'react-router-dom'
 
 import styles from './index.module.scss'
 
 type HelpProps = React.HTMLAttributes<HTMLParagraphElement> & {
     message: string;
     linkMessage?: string;
+    link?: string;
 }
 
-const Help: React.FC<HelpProps> = ({ message, linkMessage, className }) => {
+const Help = ({ message, linkMessage, className, link }: HelpProps) => {
     const helpStyles = cn(
         styles.help,
         className
@@ -16,7 +18,7 @@ const Help: React.FC<HelpProps> = ({ message, linkMessage, className }) => {
 
     return (
         <p className={helpStyles}>
-            {message} {linkMessage && <a className={styles.link}>{linkMessage}</a>}
+            {message} {linkMessage && <Link to={link ? link : ''}><span className={styles.link}>{linkMessage}</span></Link>}
         </p>
     )
 }

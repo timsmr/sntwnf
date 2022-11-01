@@ -6,16 +6,17 @@ type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
   label: string;
   buttonStyle?: 'primary' | 'info' | 'danger' | 'shuffle';
   fsz?: number;
+  onClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ label, buttonStyle = '', className }) => {
+const Button: React.FC<ButtonProps> = ({ label, buttonStyle = '', className, onClick }) => {
   const buttonStyles = cn(
     styles.button,
     styles[`style_${buttonStyle}`],
     className
   )
   return (
-    <button className={buttonStyles}>{label}</button>
+    <button onClick={onClick} className={buttonStyles}>{label}</button>
   )
 }
 

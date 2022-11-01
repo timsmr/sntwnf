@@ -15,7 +15,7 @@ const Register: React.FC<RegisterProps> = ({ }) => {
             <InputField className='mb-15' inputPlaceholder='Пароль' inputType={'password'} />
             <InputField className='mb-15' inputPlaceholder='Повторите пароль' inputType={'password'} />
             <Button label='Далее' buttonStyle='primary' />
-            <Help className='mt-10' message='Есть аккаунт?' linkMessage='Тыкни на меня!' />
+            <Help className='mt-10' message='Есть аккаунт?' linkMessage='Тыкни на меня!' link='/auth/login' />
             <p className='auth__help'>
                 <a className='auth__help__link'></a>
             </p>

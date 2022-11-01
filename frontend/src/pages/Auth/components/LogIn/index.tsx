@@ -14,7 +14,7 @@ const LogIn: React.FC<LogInProps> = ({ }) => {
             <InputField className='mb-15' inputPlaceholder='Логин' />
             <InputField className='mb-15' inputPlaceholder='Пароль' inputType={'password'} />
             <Button label='Далее' buttonStyle='primary' />
-            <Help className='mt-10' message='Нет аккаунта?' linkMessage='Тыкни на меня!' />
+            <Help className='mt-10' message='Нет аккаунта?' linkMessage='Тыкни на меня!' link='/auth/register' />
         </>
     )
 }

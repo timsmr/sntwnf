@@ -5,7 +5,7 @@ import styles from './index.module.scss'
 
 type BackButtonProps = React.HTMLAttributes<HTMLSpanElement> & {}
 
-const BackButton: React.FC<BackButtonProps> = ({ className }) => {
+export const BackButton = ({ className }: BackButtonProps) => {
     const backButtonStyles = cn(
         styles.backButton,
         className
@@ -15,5 +15,3 @@ const BackButton: React.FC<BackButtonProps> = ({ className }) => {
         <span className={backButtonStyles}></span>
     )
 }
-
-export default BackButton
