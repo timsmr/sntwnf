@@ -6,12 +6,14 @@ from fastapi.security import OAuth2PasswordBearer
 from app.routers.lobby import lobby
 from app.routers.guest import guest
 from app.routers.user import user
+from app.routers.auth import auth
 
 
 app = FastAPI()
 app.include_router(lobby.router)
 app.include_router(user.router)
 app.include_router(guest.router)
+app.include_router(auth.router)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 

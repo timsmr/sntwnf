@@ -25,12 +25,6 @@ def get_user(user_id: int):
     return service.get_row(entity=UserEntity, id=user_id)
 
 
-@router.post("/create_user")
-async def create_user(body: UserModel):
-    service.add_row(body=body)
-    return {"status": "ok"}
-
-
 @router.delete("/delete_user/{user_id}")
 async def delete_lobby(user_id: int):
     service.delete_row(entity=UserEntity, id=user_id)

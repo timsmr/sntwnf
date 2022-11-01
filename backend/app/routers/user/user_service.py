@@ -6,15 +6,7 @@ from sqlalchemy import select
 
 
 class UserService(BaseService):
-    def add_row(self, body: UserModel):
-        created_guest = UserEntity(
-            name=body.name,
-            email=body.email,
-            preferences=body.preferences,
-            password=body.password
-        )
-        session.add_all([created_guest])
-        session.commit()
+
 
     def get_active_lobbies(self, user_id: int):
         statement = select(LobbyEntity)\
