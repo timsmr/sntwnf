@@ -10,9 +10,18 @@ import Lobby from './pages/Lobby';
 import { NotFound } from './pages/NotFound'
 import { JoinLobby } from "./pages/JoinLobby";
 import { CreateLobby } from "./pages/CreateLobby";
+import { useStore } from "./stores";
+import { useLayoutEffect } from "react";
 
 
 const App = () => {
+
+  const { init } = useStore();
+
+  useLayoutEffect(() => {
+    init();
+  }, [init]);
+
   return (
     <div className='wrapper'>
       <Routes>

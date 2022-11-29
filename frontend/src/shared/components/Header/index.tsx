@@ -1,23 +1,19 @@
-import React from 'react'
-import cn from 'classnames'
+import React from 'react';
+import cn from 'classnames';
 
-import styles from './index.module.scss'
+import styles from './index.module.scss';
+import * as I from './types/types';
 
-type HeaderProps = React.HTMLAttributes<HTMLHeadingElement> & {
-    text: string;
-    headerStyle?: 'bold' | 'code' | 'italic';
-}
-
-const Header: React.FC<HeaderProps> = ({ text, headerStyle = 'normal', className }) => {
+const Header = ({ text, headerStyle = 'normal', className, }: I.HeaderProps) => {
     const headerStyles = cn(
         styles.header,
         styles[`style_${headerStyle}`],
         className
-    )
+    );
 
     return (
         <h1 className={headerStyles}>{text}</h1>
-    )
+    );
 }
 
-export default Header
+export default Header;

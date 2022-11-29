@@ -1,6 +1,6 @@
 import { makeObservable, observable, action } from 'mobx';
 
-export class AuthStore {
+class AuthStore {
     authPath: 'login' | 'register';
 
     constructor() {
@@ -16,3 +16,5 @@ export class AuthStore {
         this.authPath = path;
     }
 }
+
+export { AuthStore };

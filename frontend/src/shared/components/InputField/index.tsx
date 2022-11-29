@@ -1,15 +1,10 @@
-import React from 'react'
-import styles from './index.module.scss'
-import cn from 'classnames'
+import React from 'react';
+import styles from './index.module.scss';
+import cn from 'classnames';
 
-type InputFieldProps = React.HTMLAttributes<HTMLInputElement> & {
-    inputType?: 'text' | 'date' | 'password';
-    inputStyle?: string;
-    inputPlaceholder: string;
-    inputMaxLength?: number;
-}
+import * as I from './types/types';
 
-const InputField = ({ inputType = 'text', inputStyle = '', inputPlaceholder, inputMaxLength, className }: InputFieldProps) => {
+const InputField = ({ inputType = 'text', inputStyle = '', inputPlaceholder, inputMaxLength, value, onChange, className }: I.InputFieldProps) => {
     const inputStyles = cn(
         styles.inputField,
         styles[`style_${inputStyle}`],
@@ -19,6 +14,8 @@ const InputField = ({ inputType = 'text', inputStyle = '', inputPlaceholder, inp
     return (
         <>
             <input
+                value={value}
+                onChange={onChange}
                 className={inputStyles}
                 type={inputType}
                 placeholder={inputPlaceholder}
@@ -26,7 +23,7 @@ const InputField = ({ inputType = 'text', inputStyle = '', inputPlaceholder, inp
             />
 
         </>
-    )
-}
+    );
+};
 
-export default InputField
+export default InputField;

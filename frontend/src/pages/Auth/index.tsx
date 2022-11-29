@@ -7,21 +7,18 @@ import Register from './components/Register'
 import styles from './index.module.scss'
 import { BackButton } from '../../shared/components/BackButton'
 import { Link, useParams } from 'react-router-dom'
-import { AuthStore } from '../../stores/AuthStore/AuthStore';
 
+import * as I from './types/types';
+import { useStore } from '../../stores';
 
-type AuthProps = React.HTMLAttributes<HTMLDivElement> & {}
-
-const authStore = new AuthStore();
-
-export const Auth = observer(function Auth({ className }: AuthProps) {
+export const Auth = observer(function Auth({ className }: I.AuthProps) {
     const AuthStyles = cn(
         styles.auth,
         className
-    )
+    );
 
     const { authType } = useParams();
-    console.log(authType)
+    const { authStore } = useStore();
 
     useEffect(() => {
         if (authType === 'login' || authType === 'register') {

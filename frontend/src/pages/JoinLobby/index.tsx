@@ -8,9 +8,9 @@ import Button from './../../shared/components/Button'
 import Header from './../../shared/components/Header';
 import InputField from './../../shared/components/InputField'
 
-type JoinLobbyProps = React.HTMLAttributes<HTMLDivElement> & {}
+import * as I from './types/types';
 
-export const JoinLobby = ({ className }: JoinLobbyProps) => {
+export const JoinLobby = ({ className }: I.JoinLobbyProps) => {
     const AuthStyles = cn(
         styles.auth,
         className

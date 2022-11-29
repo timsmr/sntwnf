@@ -1,17 +1,16 @@
-import React from 'react'
-import cn from 'classnames'
+import React from 'react';
+import cn from 'classnames';
 
-import styles from './index.module.scss'
+import styles from './index.module.scss';
+import * as I from './types/types';
 
-type BackButtonProps = React.HTMLAttributes<HTMLSpanElement> & {}
-
-export const BackButton = ({ className }: BackButtonProps) => {
+export const BackButton = ({ className }: I.BackButtonProps) => {
     const backButtonStyles = cn(
         styles.backButton,
         className
-    )
+    );
 
     return (
         <span className={backButtonStyles}></span>
-    )
-}
+    );
+};

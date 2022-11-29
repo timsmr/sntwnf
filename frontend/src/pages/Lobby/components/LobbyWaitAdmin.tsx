@@ -3,9 +3,9 @@ import Button from '../../../shared/components/Button'
 import Header from '../../../shared/components/Header'
 import Help from '../../../shared/components/Help'
 
-type LobbyWaitAdminProps = {}
+import * as I from './types/types';
 
-const LobbyWaitAdmin: React.FC<LobbyWaitAdminProps> = ({ }) => {
+const LobbyWaitAdmin = ({ }: I.LobbyWaitAdminProps) => {
     return (
         <>
             <Header className='mb-100' text='STRFER' headerStyle='bold' />

@@ -1,6 +1,6 @@
 import { makeObservable, observable, action } from 'mobx';
 
-export class PopupStore {
+class PopupStore {
     isOpened: boolean;
 
     constructor() {
@@ -16,3 +16,5 @@ export class PopupStore {
         this.isOpened = !this.isOpened;
     }
 }
+
+export { PopupStore };

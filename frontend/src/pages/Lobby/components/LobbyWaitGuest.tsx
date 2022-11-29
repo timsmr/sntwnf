@@ -2,9 +2,9 @@ import React from 'react'
 import Header from '../../../shared/components/Header'
 import Loader from '../../../shared/components/Loader'
 
-type LobbyWaitGuestProps = {}
+import * as I from './types/types';
 
-const LobbyWaitGuest: React.FC<LobbyWaitGuestProps> = () => {
+const LobbyWaitGuest = ({ }: I.LobbyWaitGuestProps) => {
     return (
         <>
             <Header text='STRFER' headerStyle='code' />

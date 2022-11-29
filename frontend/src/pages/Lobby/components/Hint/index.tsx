@@ -1,15 +1,11 @@
-import { observer } from 'mobx-react'
-import React from 'react'
-import Button from '../../../../shared/components/Button'
+import { observer } from 'mobx-react';
+import React from 'react';
+import Button from '../../../../shared/components/Button';
 
-import styles from './index.module.scss'
+import styles from './index.module.scss';
+import * as I from './types/types';
 
-type HintProps = {
-    message: string,
-    handleButtonClick: () => void;
-}
-
-const Hint: React.FC<HintProps> = ({ message, handleButtonClick, }) => {
+const Hint = ({ message, handleButtonClick, }: I.HintProps) => {
     return (
         <div className={styles.hint_background}>
             <div className={styles.hint}>
@@ -19,7 +15,7 @@ const Hint: React.FC<HintProps> = ({ message, handleButtonClick, }) => {
                 <Button onClick={handleButtonClick} label='Ок' buttonStyle='info' />
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default observer(Hint);

@@ -1,17 +1,17 @@
-import React from 'react'
-import cn from 'classnames'
+import React from 'react';
+import cn from 'classnames';
 
-import styles from './index.module.scss'
-import Button from '../../shared/components/Button'
-import { Link } from 'react-router-dom'
+import styles from './index.module.scss';
+import Button from '../../shared/components/Button';
+import { Link } from 'react-router-dom';
 
-type HomeProps = React.HTMLAttributes<HTMLDivElement> & {}
+import * as I from './types/types';
 
-const Home: React.FC<HomeProps> = ({ className }) => {
+const Home = ({ className }: I.HomeProps) => {
   const homeStyles = cn(
     styles.home,
     className
-  )
+  );
 
   return (
     <div className={homeStyles}>
@@ -26,7 +26,7 @@ const Home: React.FC<HomeProps> = ({ className }) => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

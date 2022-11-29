@@ -5,9 +5,9 @@ import Header from '../../../../shared/components/Header';
 import Help from '../../../../shared/components/Help';
 import InputField from '../../../../shared/components/InputField'
 
-type LogInProps = {}
+import * as I from '../types/types';
 
-const LogIn: React.FC<LogInProps> = ({ }) => {
+const LogIn = ({ }: I.LogInProps) => {
     return (
         <>
             <Header className='mb-23' text='Вход' />
@@ -16,7 +16,7 @@ const LogIn: React.FC<LogInProps> = ({ }) => {
             <Button label='Далее' buttonStyle='primary' />
             <Help className='mt-10' message='Нет аккаунта?' linkMessage='Тыкни на меня!' link='/auth/register' />
         </>
-    )
+    );
 }
 
-export default LogIn
+export default LogIn;

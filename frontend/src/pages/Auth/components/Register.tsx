@@ -5,9 +5,9 @@ import Header from '../../../shared/components/Header';
 import Help from '../../../shared/components/Help';
 import InputField from '../../../shared/components/InputField'
 
-type RegisterProps = {}
+import * as I from './types/types';
 
-const Register: React.FC<RegisterProps> = ({ }) => {
+const Register = ({ }: I.RegisterProps) => {
     return (
         <>
             <Header className='mb-23' text='Регистрация' />
@@ -23,4 +23,4 @@ const Register: React.FC<RegisterProps> = ({ }) => {
     )
 }
 
-export default Register
+export default Register;
