@@ -10,6 +10,9 @@ from app.routers.user import user
 from app.routers.auth import auth
 from app.dbManager.dbManager import engine
 from sqlalchemy_utils import database_exists
+from alembic.config import Config
+from alembic import command
+
 app = FastAPI()
 app.include_router(lobby.router)
 app.include_router(user.router)
@@ -20,8 +23,11 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 @app.on_event("startup")
 async def startup():
-    print(engine.url)
-    print(database_exists(engine.url))
+    with engine.begin() as connection:
+        print("da eto engine")
+        alembic_cfg = Config("alembic.ini")
+        alembic_cfg.attributes['connection'] = connection
+        command.upgrade(alembic_cfg, "head")
 
 
 @app.get("/")
