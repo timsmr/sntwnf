@@ -1,15 +1,17 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from app.dbManager import env
-import os
+from os import environ
+db_username = environ.get("DB_USER", "postgres")
+db_password = environ.get("DB_PASSWORD", "password")
+db_name = environ.get("DB_NAME", "santa")
 
+db_host = "localhost"
 
-engine = create_engine(f'postgresql://{env.username}:{env.password}@localhost:5432/{env.db_name}')
+engine = create_engine(f'postgresql://{db_username}:{db_password}@{db_host}:5432/{db_name}')
 
 
 session = Session(engine)
 
 
-if __name__ == "__main__":
-    print(env.username)
-    print(env.password)
+
+

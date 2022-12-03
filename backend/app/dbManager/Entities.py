@@ -10,7 +10,7 @@ from sqlalchemy import Boolean
 Base = declarative_base()
 
 
-class Lobby(Base):
+class LobbyEntity(Base):
     __tablename__ = "Lobby"
 
     id = Column(Integer, index=True, primary_key=True, autoincrement=True)
@@ -23,7 +23,7 @@ class Lobby(Base):
         return f"Lobby(id={self.id!r}, name={self.name!r})"
 
 
-class User(Base):
+class UserEntity(Base):
     __tablename__ = "user_account"
 
     id = Column(Integer, index=True, primary_key=True, autoincrement=True)
@@ -31,22 +31,24 @@ class User(Base):
     email = Column(String)
     preferences = Column(String)
     password = Column(String)
+    token = Column(String)
+    expireDate = Column(String)
 
     def __repr__(self):
         return f"User(id={self.id!r}, name={self.name!r})"
 
 
-class Guest(Base):
+class GuestEntity(Base):
     __tablename__ = "guest"
 
     id = Column(Integer, index=True, primary_key=True, autoincrement=True)
-    lobby_id = Column(Integer, ForeignKey("Lobby.id"), nullable=False)
-    user_id = Column(Integer, ForeignKey("user_account.id"), nullable=False)
-    giving_to = Column(Integer, ForeignKey("user_account.id"), nullable=False)
+    lobby_id = Column(Integer, ForeignKey("Lobby.id", ondelete="cascade"), nullable=False)
+    user_id = Column(Integer, ForeignKey("user_account.id", ondelete="cascade"), nullable=False)
+    giving_to = Column(Integer, ForeignKey("user_account.id"), nullable=True)
     is_host = Column(Boolean)
 
     def __repr__(self):
-        return f"Guest(id={self.user_id!r}, giving to {self.giving_to!r})"
+        return f"Guest(id={self.id!r}, user_id={self.user_id!r}, giving to {self.giving_to!r})"
 
 
 target_metadata = Base.metadata
