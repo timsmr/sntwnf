@@ -9,5 +9,5 @@ services:
     environment:
       DB_USER: postgres
       DB_NAME: santa
-      DB_PASSWORD: Rjkzy231240
+      DB_PASSWORD: password
     restart: always
