@@ -1,5 +1,13 @@
-version: "3.9"
+#docker-compose.yml
+version: "3.0"
 services:
-  web:
+  app:
+    network_mode: host
     build: .
-    network_mode: "host"
+    volumes:
+      - .:/app
+    environment:
+      DB_USER: postgres
+      DB_HOST: santa
+      DB_PASSWORD: Rjkzy231240
+    restart: always

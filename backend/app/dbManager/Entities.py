@@ -31,6 +31,8 @@ class UserEntity(Base):
     email = Column(String)
     preferences = Column(String)
     password = Column(String)
+    token = Column(String)
+    expireDate = Column(String)
 
     def __repr__(self):
         return f"User(id={self.id!r}, name={self.name!r})"

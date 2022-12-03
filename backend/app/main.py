@@ -7,7 +7,8 @@ from app.routers.lobby import lobby
 from app.routers.guest import guest
 from app.routers.user import user
 from app.routers.auth import auth
-
+from app.dbManager.dbManager import engine
+from sqlalchemy_utils import database_exists
 
 app = FastAPI()
 app.include_router(lobby.router)
@@ -17,11 +18,16 @@ app.include_router(auth.router)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
+@app.on_event("startup")
+async def startup():
+    print(engine.url)
+    print(database_exists(engine.url))
+
+
 @app.get("/")
 async def get():
-    return {"start_message": 'hello world'}
+    print(engine.url)
+    print(database_exists(engine.url))
+    return {"start_message": 'hello world',
+            str(engine.url): str(database_exists(engine.url))}
 
-
-@app.get("/token/")
-async def read_token(token: str = Depends(oauth2_scheme)):
-    return {"token": token}

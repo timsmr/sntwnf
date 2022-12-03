@@ -1,13 +1,7 @@
-#
 FROM python:3.9
-#
-WORKDIR /code
-#
-COPY ./requirements.txt /code/requirements.txt
-#
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-#
-COPY ./app /code/app
-#
-
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "9999"]
+WORKDIR /backend
+COPY . /backend
+RUN pip install -r requirements.txt
+RUN chmod +x docker-entrypoint.sh
+EXPOSE 8000
+ENTRYPOINT ["./docker-entrypoint.sh"]
