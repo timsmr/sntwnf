@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI, Depends
 from fastapi.responses import HTMLResponse
 import sys
@@ -9,7 +10,6 @@ from app.routers.user import user
 from app.routers.auth import auth
 from app.dbManager.dbManager import engine
 from sqlalchemy_utils import database_exists
-
 app = FastAPI()
 app.include_router(lobby.router)
 app.include_router(user.router)
@@ -30,4 +30,8 @@ async def get():
     print(database_exists(engine.url))
     return {"start_message": 'hello world',
             str(engine.url): str(database_exists(engine.url))}
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 
