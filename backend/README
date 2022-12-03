@@ -1,9 +1,8 @@
 Инструкция по запуску с нуля
 1.создаем пустую бд в постгрес
-2.прогоняем все миграции
-    alembic upgrade head
-3.заполняем бд данными
-    python alembic/seed/dbseed.py
+2. pip install -r requirements.txt
+3. запустить файл migration.py
+
 4.запуск сервера из папки app
     uvicorn main:app --reload
 
@@ -16,10 +15,6 @@
 
 
 
-
-
-заполнить бд пустыми таблицами (бд должна быть создана)
-alembic upgrade head
 
 
 создать миграцию

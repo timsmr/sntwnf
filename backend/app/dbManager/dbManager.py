@@ -6,8 +6,8 @@ db_password = environ.get("DB_PASSWORD", "password")
 db_name = environ.get("DB_NAME", "santa")
 
 db_host = "localhost"
-
-engine = create_engine(f'postgresql://{db_username}:{db_password}@{db_host}:5432/{db_name}')
+sqlalchemy_url = f'postgresql://{db_username}:{db_password}@{db_host}:5432/{db_name}'
+engine = create_engine(sqlalchemy_url)
 
 
 session = Session(engine)
