@@ -26,8 +26,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 @app.get("/")
 async def get():
-    print(engine.url)
-    print(database_exists(engine.url))
     return {"start_message": 'hello world',
             str(engine.url): str(database_exists(engine.url))}
 
