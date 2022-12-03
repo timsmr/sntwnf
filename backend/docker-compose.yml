@@ -8,6 +8,6 @@ services:
       - .:/app
     environment:
       DB_USER: postgres
-      DB_HOST: santa
+      DB_NAME: santa
       DB_PASSWORD: Rjkzy231240
     restart: always
