@@ -4,11 +4,20 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from app.dbManager.Entities import target_metadata
 from alembic import context
-
+from os import environ
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
 
+# setting up url for our database, because of probability
+# to changing db params from user to user
+db_username = environ.get("DB_USER", "postgres")
+db_password = environ.get("DB_PASSWORD", "password")
+db_name = environ.get("DB_NAME", "santa")
+
+db_host = environ.get("DB_HOST", "localhost")
+sqlalchemy_url = f'postgresql://{db_username}:{db_password}@{db_host}:5432/{db_name}'
+config.set_main_option('sqlalchemy.url', sqlalchemy_url)
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:
@@ -38,7 +47,7 @@ def run_migrations_offline() -> None:
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    url = config.get_main_option(sqlalchemy_url)
     context.configure(
         url=url,
         target_metadata=target_metadata,

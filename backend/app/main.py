@@ -21,19 +21,11 @@ app.include_router(auth.router)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-@app.on_event("startup")
-async def startup():
-    with engine.begin() as connection:
-        print("da eto engine")
-        alembic_cfg = Config("alembic.ini")
-        alembic_cfg.attributes['connection'] = connection
-        command.upgrade(alembic_cfg, "head")
+
 
 
 @app.get("/")
 async def get():
-    print(engine.url)
-    print(database_exists(engine.url))
     return {"start_message": 'hello world',
             str(engine.url): str(database_exists(engine.url))}
 
