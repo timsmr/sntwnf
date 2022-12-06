@@ -32,8 +32,8 @@ class AuthService():
     def verify_password(self, password: str, hashed_pass: str) -> bool:
         return password_context.verify(password, hashed_pass)
 
-    def is_user_exist(self, email):
-        if session.query(UserEntity).filter_by(email=email).order_by(UserEntity.id).first():
+    def is_user_exist(self, username):
+        if session.query(UserEntity).filter_by(username=username).order_by(UserEntity.id).first():
             return True
         else:
             return False
@@ -46,39 +46,39 @@ class AuthService():
         return encoded_jwt
 
     def create_user(self, body: UserModel):
-        if self.is_user_exist(body.email):
+        if self.is_user_exist(body.username):
             return {"error": "user already exists"}
         created_guest = UserEntity(
             name=body.name,
-            email=body.email,
+            username=body.username,
             preferences=body.preferences,
             password=self.get_hashed_password(body.password),
-            token=self.create_access_token(body.email),
+            token=self.create_access_token(body.username),
         )
         session.add_all([created_guest])
         session.commit()
         return {"status": "ok"}
 
     def sign_in(self, form_data):
-        user = session.query(UserEntity).filter_by(email=form_data.username).order_by(UserEntity.id).first()
+        user = session.query(UserEntity).filter_by(username=form_data.username).order_by(UserEntity.id).first()
         if user is None:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Incorrect email or password"
+                detail="Incorrect username or password"
             )
         hashed_pass = user.password
         if not self.verify_password(form_data.password, hashed_pass):
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Incorrect email or password"
+                detail="Incorrect username or password"
             )
         session.execute(update(UserEntity).
-                        where(UserEntity.email == form_data.username).
-                        values(token=self.create_access_token(user.email),
+                        where(UserEntity.username == form_data.username).
+                        values(token=self.create_access_token(user.username),
                                expireDate=datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
                         )
         return {
-            "access_token": self.create_access_token(user.email)
+            "access_token": self.create_access_token(user.username)
         }
 
     def get_current_user(self, token):

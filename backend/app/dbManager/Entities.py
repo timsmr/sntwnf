@@ -28,7 +28,7 @@ class UserEntity(Base):
 
     id = Column(Integer, index=True, primary_key=True, autoincrement=True)
     name = Column(String(30))
-    email = Column(String)
+    username = Column(String)
     preferences = Column(String)
     password = Column(String)
     token = Column(String)
