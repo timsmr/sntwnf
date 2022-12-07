@@ -14,7 +14,7 @@ service = LobbyDevService()
 
 @router.get("/")
 async def get_lobbies():
-    return await service.get_all_rows(entity=LobbyEntity)
+    return service.get_all_rows(entity=LobbyEntity)
 
 
 @router.get("/{lobby_id}")
