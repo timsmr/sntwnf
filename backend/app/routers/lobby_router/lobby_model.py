@@ -2,6 +2,9 @@ from pydantic import BaseModel
 
 
 class LobbyModel(BaseModel):
-    name: str
+    lobby_name: str
     event_date: str
     is_started: bool
+    
+class GuestModel(BaseModel):
+    lobby_name: str

@@ -25,7 +25,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 
 
 
-class AuthService():
+class AuthService(BaseService):
     def get_hashed_password(self, password: str) -> str:
         return password_context.hash(password)
 
@@ -81,14 +81,6 @@ class AuthService():
             "access_token": self.create_access_token(user.username)
         }
 
-    def get_current_user(self, token):
-        user = session.query(UserEntity).filter_by(token=token).order_by(UserEntity.id).first()
-        if not user:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid authentication credentials",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
-        return user
+    
 
 
