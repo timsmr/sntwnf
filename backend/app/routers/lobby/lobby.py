@@ -2,19 +2,19 @@ import sys
 sys.path.append("../..") # Adds higher directory to python modules path.
 from fastapi import APIRouter
 from app.dbManager.Entities import LobbyEntity, GuestEntity
-from app.routers.lobby.lobby_model import LobbyModel
-from app.routers.lobby.lobby_service import LobbyService
+from app.routers.lobby.lobby_model import LobbyDevModel
+from app.routers.lobby.lobby_service import LobbyDevService
 
 router = APIRouter(
-    prefix="/lobbies",
-    tags=["lobbies"],
+    prefix="/dev_lobbies",
+    tags=["dev_lobbies"],
     responses={404: {"description": "Not found"}},
 )
-service = LobbyService()
+service = LobbyDevService()
 
 @router.get("/")
-def get_lobbies():
-    return service.get_all_rows(entity=LobbyEntity)
+async def get_lobbies():
+    return await service.get_all_rows(entity=LobbyEntity)
 
 
 @router.get("/{lobby_id}")
@@ -23,7 +23,7 @@ def get_lobby(lobby_id: int):
 
 
 @router.post("/create_lobby")
-async def create_lobby(body: LobbyModel):
+async def create_lobby(body: LobbyDevModel):
     service.add_row(body=body)
     return {"status": "ok"}
 

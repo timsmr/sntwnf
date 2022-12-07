@@ -7,7 +7,7 @@ from fastapi.security import OAuth2PasswordBearer
 from app.routers.lobby import lobby
 from app.routers.guest import guest
 from app.routers.user import user
-from app.routers.auth import auth
+from app.routers.auth_router import auth
 from app.dbManager.dbManager import engine
 from sqlalchemy_utils import database_exists
 from alembic.config import Config

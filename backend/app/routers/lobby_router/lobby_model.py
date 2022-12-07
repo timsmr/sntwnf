@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class LobbyDevModel(BaseModel):
+class LobbyModel(BaseModel):
     name: str
     event_date: str
     is_started: bool
