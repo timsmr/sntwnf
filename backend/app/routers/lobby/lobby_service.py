@@ -2,12 +2,12 @@ from app.dbManager.dbManager import session
 from app.routers.base_router.base_service import BaseService
 from app.dbManager.Entities import LobbyEntity
 import datetime
-from app.routers.lobby.lobby_model import LobbyModel
+from app.routers.lobby.lobby_model import LobbyDevModel
 from app.dbManager.Entities import GuestEntity
 from app.service.helper_functions import if_appropriate_recievers, define_recievers
 import random
-class LobbyService(BaseService):
-    def add_row(self, body: LobbyModel):
+class LobbyDevService(BaseService):
+    def add_row(self, body: LobbyDevModel):
         created_lobby = LobbyEntity(
             name=body.name,
             event_date=body.event_date,

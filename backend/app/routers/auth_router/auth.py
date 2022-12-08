@@ -2,14 +2,14 @@ import sys
 
 sys.path.append("../..")  # Adds higher directory to python modules path.
 from fastapi import APIRouter, Depends
-from app.routers.auth.auth_service import AuthService
+from app.routers.auth_router.auth_service import AuthService
 from fastapi import FastAPI, status, HTTPException
 from fastapi.responses import RedirectResponse
 from app.routers.user.user_model import UserModel
 from fastapi import FastAPI, status, HTTPException, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.responses import RedirectResponse
-from app.routers.auth.auth_model import TokenModel
+from app.routers.auth_router.auth_model import TokenModel
 
 from uuid import uuid4
 
