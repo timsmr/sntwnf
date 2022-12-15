@@ -57,7 +57,7 @@ class AuthService(BaseService):
         )
         session.add_all([created_guest])
         session.commit()
-        return {"status": "ok"}
+        return {"created_user": session.query(UserEntity).filter_by(username=body.username).order_by(UserEntity.id).first()}
 
     def sign_in(self, form_data):
         user = session.query(UserEntity).filter_by(username=form_data.username).order_by(UserEntity.id).first()
