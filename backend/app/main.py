@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import FastAPI, Depends
 from fastapi.responses import HTMLResponse
 import sys
+from fastapi.middleware.cors import CORSMiddleware
 sys.path.append("..") # Adds higher directory to python modules path.
 from fastapi.security import OAuth2PasswordBearer
 from app.routers.lobby import lobby
@@ -23,7 +24,15 @@ app.include_router(lobby_router.router)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
+origins = ["*"]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
