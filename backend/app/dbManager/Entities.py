@@ -14,7 +14,7 @@ class LobbyEntity(Base):
     __tablename__ = "Lobby"
 
     id = Column(Integer, index=True, primary_key=True, autoincrement=True)
-    name = Column(String(30))
+    name = Column(String(30), unique=True)
     event_date = Column(String)
     created = Column(String)
     started = Column(Boolean)
@@ -28,7 +28,7 @@ class UserEntity(Base):
 
     id = Column(Integer, index=True, primary_key=True, autoincrement=True)
     name = Column(String(30))
-    email = Column(String)
+    username = Column(String, unique=True)
     preferences = Column(String)
     password = Column(String)
     token = Column(String)
@@ -42,7 +42,7 @@ class GuestEntity(Base):
     __tablename__ = "guest"
 
     id = Column(Integer, index=True, primary_key=True, autoincrement=True)
-    lobby_id = Column(Integer, ForeignKey("Lobby.id", ondelete="cascade"), nullable=False)
+    lobby_name = Column(String, ForeignKey("Lobby.name", ondelete="cascade"), nullable=False)
     user_id = Column(Integer, ForeignKey("user_account.id", ondelete="cascade"), nullable=False)
     giving_to = Column(Integer, ForeignKey("user_account.id"), nullable=True)
     is_host = Column(Boolean)

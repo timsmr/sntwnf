@@ -7,7 +7,8 @@ from fastapi.security import OAuth2PasswordBearer
 from app.routers.lobby import lobby
 from app.routers.guest import guest
 from app.routers.user import user
-from app.routers.auth import auth
+from app.routers.auth_router import auth
+from app.routers.lobby_router import lobby_router
 from app.dbManager.dbManager import engine
 from sqlalchemy_utils import database_exists
 from alembic.config import Config
@@ -18,22 +19,15 @@ app.include_router(lobby.router)
 app.include_router(user.router)
 app.include_router(guest.router)
 app.include_router(auth.router)
+app.include_router(lobby_router.router)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-@app.on_event("startup")
-async def startup():
-    with engine.begin() as connection:
-        print("da eto engine")
-        alembic_cfg = Config("alembic.ini")
-        alembic_cfg.attributes['connection'] = connection
-        command.upgrade(alembic_cfg, "head")
+
 
 
 @app.get("/")
 async def get():
-    print(engine.url)
-    print(database_exists(engine.url))
     return {"start_message": 'hello world',
             str(engine.url): str(database_exists(engine.url))}
 

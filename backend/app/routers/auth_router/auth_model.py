@@ -22,7 +22,7 @@ class TokenBase(BaseModel):
 class UserBase(BaseModel):
     """ Return response data """
     id: int
-    email: str
+    username: str
     name: str
 
 

@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field
 
 class UserModel(BaseModel):
     name: str
-    email: str
+    username: str
     preferences: str
     password: str
     is_active: bool = False
@@ -20,13 +20,13 @@ class TokenPayload(BaseModel):
 
 
 class UserAuth(BaseModel):
-    email: str = Field(..., description="user email")
+    username: str = Field(..., description="user username")
     password: str = Field(..., min_length=5, max_length=24, description="user password")
 
 
 class UserOut(BaseModel):
     id: UUID
-    email: str
+    username: str
 
 
 class SystemUser(UserOut):
