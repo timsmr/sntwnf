@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import * as I from './types/types';
 
-const Button = ({ label, buttonStyle = '', className, onClick, }: I.ButtonProps) => {
+const Button = ({ label, buttonStyle = '', className, onClick, type = 'button' }: I.ButtonProps) => {
   const buttonStyles = cn(
     styles.button,
     styles[`style_${buttonStyle}`],
@@ -12,7 +12,7 @@ const Button = ({ label, buttonStyle = '', className, onClick, }: I.ButtonProps)
   );
 
   return (
-    <button onClick={onClick} className={buttonStyles}>{label}</button>
+    <button type={type} onClick={onClick} className={buttonStyles}>{label}</button>
   );
 };
 

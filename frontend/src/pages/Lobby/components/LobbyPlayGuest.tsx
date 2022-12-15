@@ -10,11 +10,11 @@ import * as I from './types/types';
 
 const LobbyPlayGuest = ({ giving }: I.LobbyPlayGuestProps) => {
 
-    const { popupStore } = useStore();
+    const { popupStore, lobbyStore } = useStore();
 
     return (
         <>
-            <Header text='STRFER' headerStyle='code' />
+            <Header text={lobbyStore.code ? lobbyStore.code : ''} headerStyle='code' />
             <Header text='Ты даришь подарок игроку' />
             <Header className='mb-23' text={giving} headerStyle='italic' />
             <Button onClick={popupStore.changeValue} className='mb-40' label='Подсказка' buttonStyle='info' />

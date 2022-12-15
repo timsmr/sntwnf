@@ -11,9 +11,9 @@
         color: $white;
         margin-bottom: 52px;
     }
+}
 
-    .button-block {
-        display: flex;
-    }
-
+.buttonBlock {
+    display: flex;
+    flex-flow: row nowrap;
 }

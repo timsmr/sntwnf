@@ -4,11 +4,13 @@ import { action, makeObservable, observable } from 'mobx';
 import { PopupStore } from './popup';
 import { AuthStore } from './auth';
 import { CurrentUserStore } from './currentUser';
+import { LobbyStore } from './lobby';
 
 export class RootStore {
     popupStore: PopupStore;
     authStore: AuthStore;
     currentUser: CurrentUserStore;
+    lobbyStore: LobbyStore;
 
     constructor() {
         makeObservable(this, {
@@ -18,10 +20,16 @@ export class RootStore {
         this.popupStore = new PopupStore();
         this.authStore = new AuthStore();
         this.currentUser = new CurrentUserStore();
+        this.lobbyStore = new LobbyStore();
     }
 
-    init() {
-        console.log('pls help me finish this project')
+    init = async () => {
+        this.currentUser.setUserToken(localStorage.getItem('userToken'))
+        this.currentUser.setUserIsHost(Boolean(localStorage.getItem('isHost')))
+        this.lobbyStore.setLobbyCode(localStorage.getItem('lobbyCode'))
+        this.lobbyStore.setLobbyName(localStorage.getItem('lobbyName'))
+        this.lobbyStore.setLobbyEventDate(localStorage.getItem('lobbyEventDate'))
+        this.lobbyStore.setLobbyStarted(Boolean(localStorage.getItem('lobbyStarted')))
     }
 }
 export const RootStoreContext = createContext<RootStore | null>(null);

@@ -5,4 +5,5 @@ export type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
     buttonStyle?: '' | 'primary' | 'info' | 'danger' | 'shuffle';
     fsz?: number;
     onClick?: () => void;
+    type?: 'button' | 'submit' | 'reset'
 };

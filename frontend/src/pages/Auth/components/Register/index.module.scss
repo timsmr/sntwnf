@@ -1,0 +1,40 @@
+.form {
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerRegisterDetail {
+    max-width: 75% !important;
+}
+
+.inputRegisterDetail {
+    width: 75% !important;
+}
+
+.textareaRegisterDetail {
+    width: 75% !important;
+    height: 150px !important;
+}
+
+.buttonRegisterDetail {
+    margin-top: 30px;
+}
+
+.steps {
+    position: absolute;
+    font-size: 1.4rem;
+    color: #ddd;
+    font-weight: 700;
+    top: 1.5rem;
+    right: 1.5rem;
+}
+
+.buttonDiv {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

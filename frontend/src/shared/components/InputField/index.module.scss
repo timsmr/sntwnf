@@ -24,10 +24,44 @@
     &:focus {
         outline: 2px solid $form-focus-border-color;
     }
+
+    &:not(:focus):not(:placeholder-shown):invalid {
+        outline: 1px solid #B01515;
+        background-image: url('../../../../public/img/warning_icon.svg');
+        background-repeat: no-repeat;
+        background-size: 22px 22px;
+        background-position: right 10px bottom 50%;
+
+        &::placeholder {
+            color: rgba($color: #B01515, $alpha: 1);
+        }
+
+        &:hover {
+            outline: 1px solid #B01515;
+        }
+
+        &:focus {
+            outline: 2px solid #B01515;
+        }
+
+        &[type="date"]::-webkit-inner-spin-button {
+            display: none;
+            -webkit-appearance: none;
+        }
+
+        &[type="date"]::-webkit-calendar-picker-indicator {
+            display: none;
+            -webkit-appearance: none;
+        }
+    }
 }
 
 .style_warning {
-    outline: 2px solid #B01515;
+    outline: 1px solid #B01515;
+    background-image: url('../../../../public/img/warning_icon.svg');
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    background-position: right 10px bottom 50%;
 
     &:hover {
         outline: 1px solid #B01515;
@@ -37,15 +71,13 @@
         outline: 2px solid #B01515;
     }
 
-    // &::before {
-    //     content: "";
-    //     position: absolute;
-    //     width: 30px;
-    //     height: 30px;
-    //     left: -50px;
-    //     background-color: green;
-    //     background-image: url('../../../../public/img/warning-sign.svg');
-    //     background-repeat: no-repeat;
-    //     background-size: contain;
-    // }
+    &[type="date"]::-webkit-inner-spin-button {
+        display: none;
+        -webkit-appearance: none;
+    }
+
+    &[type="date"]::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+    }
 }
