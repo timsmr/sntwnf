@@ -1,8 +1,9 @@
+from sqlalchemy import update
 from app.dbManager.dbManager import session
 from app.routers.base_router.base_service import BaseService
 from app.dbManager.Entities import LobbyEntity
 import datetime
-from app.routers.lobby_router.lobby_model import LobbyModel, GuestModel
+from app.routers.lobby_router.lobby_model import LobbyInfoModel, LobbyModel, GuestModel
 from app.dbManager.Entities import GuestEntity 
 
 class LobbyService(BaseService):
@@ -40,3 +41,13 @@ class LobbyService(BaseService):
         session.add_all([new_guest])
         session.commit()
         return {"guest": session.query(GuestEntity).filter_by(user_id=current_user.id).filter_by(lobby_name=body.lobby_name).first()}
+    
+    def change_lobby(self, body: LobbyInfoModel):
+        session.execute(update(LobbyEntity).
+                        where(LobbyEntity.name == body.lobby_name).
+                        values(
+                            event_date = body.event_date
+                            )
+                        )
+        session.commit()
+        return {"lobby": session.query(LobbyEntity).filter_by(name=body.lobby_name).order_by(LobbyEntity.id).first()}
