@@ -25,7 +25,7 @@ class LobbyService(BaseService):
         session.add_all([lobby_owner])
         session.commit()
         
-        return True
+        return {"lobby": session.query(LobbyEntity).filter_by(name=body.lobby_name).order_by(LobbyEntity.id).first()}
     
     def add_new_guest(self, body: GuestModel, current_user):
         if not session.query(LobbyEntity).filter_by(name=body.lobby_name).order_by(LobbyEntity.id).first():
@@ -39,4 +39,4 @@ class LobbyService(BaseService):
         )
         session.add_all([new_guest])
         session.commit()
-        return True
+        return {"guest": session.query(GuestEntity).filter_by(user_id=current_user.id).filter_by(lobby_name=body.lobby_name).first()}
