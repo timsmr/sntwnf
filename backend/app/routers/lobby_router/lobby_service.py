@@ -39,4 +39,4 @@ class LobbyService(BaseService):
         )
         session.add_all([new_guest])
         session.commit()
-        return True
+        return {"guest": session.query(GuestEntity).filter_by(user_id=current_user.id).filter_by(lobby_name=body.lobby_name).first()}
