@@ -46,35 +46,20 @@ const Register = ({ }: I.RegisterProps) => {
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault()
         if (!isLastStep) return next()
-        console.log(data)
+
         await axios.post('/auth/create_user', {
             "name": data['name'],
-            "email": data['login'],
+            "username": data['login'],
             "preferences": data['preferences'],
             "password": data['password']
         })
             .then(function (response) {
-                console.log(response);
+                currentUser.setUserToken(response.data.created_user.token)
+                currentUser.setUserId(response.data.created_user.id)
+                navigate('/');
             })
             .catch(function (error) {
                 console.log(error);
-            });
-
-        axios.post("/auth/login", {
-            "grant_type": "password",
-            "username": data['login'],
-            "password": data['password']
-        }, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        })
-            .then((res) => {
-                currentUser.setUserToken(res.data.access_token)
-                navigate('/');
-            })
-            .catch((err) => {
-                console.log(err);
             });
     }
 

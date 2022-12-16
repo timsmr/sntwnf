@@ -43,41 +43,58 @@ export const CreateLobby = ({ className }: I.CreateLobbyProps) => {
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault()
 
-        await axios.post('https://639ad810d514150197412701.mockapi.io/lobby', {
-            name: data['name'],
+        // await axios.post('https://639ad810d514150197412701.mockapi.io/lobby', {
+        //     name: data['name'],
+        //     event_date: data['date'],
+        //     is_started: false
+        // }).then(function (response) {
+        //     lobbyStore.setLobbyCode(response.data.id)
+        //     lobbyStore.setLobbyName(response.data.name)
+        //     lobbyStore.setLobbyEventDate(response.data.event_date)
+        //     lobbyStore.setLobbyStarted(response.data.is_started)
+        // })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+
+        // await axios.post(`https://639ad810d514150197412701.mockapi.io/lobby/${lobbyStore.code}/guest`, {
+        //     is_host: true,
+        // }).then((res) => {
+        //     currentUser.setUserIsHost(true)
+        // })
+
+        // navigate(`/lobby/${lobbyStore.code}}`);
+
+
+        await axios.post('/lobby/create_lobby', {
+            lobby_name: data['name'],
             event_date: data['date'],
             is_started: false
-        }).then(function (response) {
-            lobbyStore.setLobbyCode(response.data.id)
-            lobbyStore.setLobbyName(response.data.name)
-            lobbyStore.setLobbyEventDate(response.data.event_date)
-            lobbyStore.setLobbyStarted(response.data.is_started)
+        }, {
+            params: {
+                token: currentUser.userToken
+            }
         })
+            .then(function (response) {
+                console.log(response)
+                lobbyStore.setLobbyCode(response.data.lobby.id)
+                lobbyStore.setLobbyName(response.data.lobby.name)
+                lobbyStore.setLobbyEventDate(response.data.lobby.event_date)
+                lobbyStore.setLobbyStarted(response.data.lobby.started)
+            })
             .catch(function (error) {
                 console.log(error);
             });
 
-        await axios.post(`https://639ad810d514150197412701.mockapi.io/lobby/${lobbyStore.code}/guest`, {
+        await axios.post(`/guests/create_guest`, {
+            lobby_id: lobbyStore.name,
+            user_id: currentUser.userId,
             is_host: true,
         }).then((res) => {
             currentUser.setUserIsHost(true)
         })
 
         navigate(`/lobby/${lobbyStore.code}}`);
-
-
-        // await axios.post('/lobbies/create_lobby', {
-        //     "name": data['name'],
-        //     "event_date": data['date'],
-        //     "is_started": false
-        // })
-        //     .then(function (response) {
-
-        //         navigate("/lobby/${123}");
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
     };
 
     return (
