@@ -1,83 +1,83 @@
-@import '../../../scss/variables';
+@import "../../../scss/variables";
 
 .inputField {
-    position: relative;
-    padding: 0 20px;
-    height: 50px;
-    width: 300px;
-    font-size: 22px;
-    line-height: 1;
-    color: $header;
-    background-color: $form-background;
-    border: none;
-    border-radius: $form-border-radius;
-    cursor: pointer;
+  position: relative;
+  padding: 0 2rem;
+  height: 5rem;
+  width: 30rem;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: $header;
+  background-color: $form-background;
+  border: none;
+  border-radius: $form-border-radius;
+  cursor: pointer;
 
-    &::placeholder {
-        color: $form-text;
-    }
+  &::placeholder {
+    color: $form-text;
+  }
 
-    &:hover {
-        outline: 1px solid $form-hover-border-color;
-    }
+  &:hover {
+    outline: 1px solid $form-hover-border-color;
+  }
 
-    &:focus {
-        outline: 2px solid $form-focus-border-color;
-    }
+  &:focus {
+    outline: 2px solid $form-focus-border-color;
+  }
 
-    &:not(:focus):not(:placeholder-shown):invalid {
-        outline: 1px solid #B01515;
-        background-image: url('../../../../public/img/warning_icon.svg');
-        background-repeat: no-repeat;
-        background-size: 22px 22px;
-        background-position: right 10px bottom 50%;
-
-        &::placeholder {
-            color: rgba($color: #B01515, $alpha: 1);
-        }
-
-        &:hover {
-            outline: 1px solid #B01515;
-        }
-
-        &:focus {
-            outline: 2px solid #B01515;
-        }
-
-        &[type="date"]::-webkit-inner-spin-button {
-            display: none;
-            -webkit-appearance: none;
-        }
-
-        &[type="date"]::-webkit-calendar-picker-indicator {
-            display: none;
-            -webkit-appearance: none;
-        }
-    }
-}
-
-.style_warning {
-    outline: 1px solid #B01515;
-    background-image: url('../../../../public/img/warning_icon.svg');
+  &:not(:focus):not(:placeholder-shown):invalid {
+    outline: 1px solid #b01515;
+    background-image: url("../../../../public/img/warning_icon.svg");
     background-repeat: no-repeat;
-    background-size: 22px 22px;
+    background-size: 2.2rem 2.2rem;
     background-position: right 10px bottom 50%;
 
+    &::placeholder {
+      color: rgba($color: #b01515, $alpha: 1);
+    }
+
     &:hover {
-        outline: 1px solid #B01515;
+      outline: 1px solid #b01515;
     }
 
     &:focus {
-        outline: 2px solid #B01515;
+      outline: 2px solid #b01515;
     }
 
     &[type="date"]::-webkit-inner-spin-button {
-        display: none;
-        -webkit-appearance: none;
+      display: none;
+      -webkit-appearance: none;
     }
 
     &[type="date"]::-webkit-calendar-picker-indicator {
-        display: none;
-        -webkit-appearance: none;
+      display: none;
+      -webkit-appearance: none;
     }
+  }
+}
+
+.style_warning {
+  outline: 1px solid #b01515;
+  background-image: url("../../../../public/img/warning_icon.svg");
+  background-repeat: no-repeat;
+  background-size: 2.2rem 2.2rem;
+  background-position: right 1rem bottom 50%;
+
+  &:hover {
+    outline: 1px solid #b01515;
+  }
+
+  &:focus {
+    outline: 2px solid #b01515;
+  }
+
+  &[type="date"]::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  &[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
 }

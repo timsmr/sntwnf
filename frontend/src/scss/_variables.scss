@@ -1,41 +1,41 @@
 // MAIN FORM
 
-$main-width: 1000px;
-$main-height: 650px;
+$main-width: 100rem;
+$main-height: 65rem;
 
 // BACKGROUND
 
 $background-white: #ffffff;
-$background-purple: rgba(#9F00EA, .4);
-$background-blue: #93B1FF;
+$background-purple: rgba(#9f00ea, 0.4);
+$background-blue: #93b1ff;
 
 // BUTTONS
 
 $button-border-radius: 20px;
 
-$primary: #525EC7;
+$primary: #525ec7;
 $primary-text: #ffffff;
-$info: rgba(0, 117, 255, .2);
-$info-text: #0059AB;
-$danger: rgba(200, 21, 32, .3);
-$danger-text: #C80024;
-$shuffle: rgba(203, 145, 214, .2);
-$shuffle-text: #A971B7;
+$info: rgba(0, 117, 255, 0.2);
+$info-text: #0059ab;
+$danger: rgba(200, 21, 32, 0.3);
+$danger-text: #c80024;
+$shuffle: rgba(203, 145, 214, 0.2);
+$shuffle-text: #a971b7;
 $common: #ffffff;
 $common-text: #000000;
 
 // FORMS
 
-$form-background: #F4F4F4;
-$form-text: rgba(0, 0, 0, .5);
+$form-background: #f4f4f4;
+$form-text: rgba(0, 0, 0, 0.5);
 $form-border-radius: 15px;
-$form-focus-border-color: rgba(0, 0, 0, .4);
-$form-hover-border-color: rgba(0, 0, 0, .1);
+$form-focus-border-color: rgba(0, 0, 0, 0.4);
+$form-hover-border-color: rgba(0, 0, 0, 0.1);
 
 // TEXT
 
-$header: rgba(0, 0, 0, .7);
-$description: rgba(0, 0, 0, .5);
+$header: rgba(0, 0, 0, 0.7);
+$description: rgba(0, 0, 0, 0.5);
 
 // OTHERS
 
@@ -45,5 +45,5 @@ $black: #000000;
 // --------------------------- SHAPES ---------------------------
 
 $border-radius: 15px;
-$scroll-color: #D9D9D9;
+$scroll-color: #d9d9d9;
 $scroll-radius: 100px;
