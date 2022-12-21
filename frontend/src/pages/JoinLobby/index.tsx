@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import cn from "classnames";
 import { Link, useNavigate } from "react-router-dom";
+import { useStore } from "stores";
 
 import styles from "./index.module.scss";
 import { BackButton } from "../../shared/components/BackButton";
 import Button from "./../../shared/components/Button";
 import Header from "./../../shared/components/Header";
 import InputField from "./../../shared/components/InputField";
+import { InputStyle } from "shared/components/InputField/types/types";
 
 import * as I from "./types/types";
-import { InputStyle } from "shared/components/InputField/types/types";
-import axios from "axios";
+import { apiService } from "api/apiService";
 
 export const JoinLobby = ({ className }: I.JoinLobbyProps) => {
   const AuthStyles = cn(styles.auth, className);
+
+  const store = useStore();
 
   const [codeValue, setCodeValue] = useState("");
   const [codeStyle, setCodeStyle] = useState<InputStyle>("");
@@ -26,17 +29,14 @@ export const JoinLobby = ({ className }: I.JoinLobbyProps) => {
 
   const onSubmit = async () => {
     codeValue
-      ? await axios(`/lobbies/${codeValue}`)
-          .then(function (response) {
-            if (response.data) {
-              navigate(`/lobby/${codeValue}`);
-            } else {
-              setCodeStyle("warning");
-            }
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
+      ? apiService.checkIfLobbyExists(codeValue).then((data) => {
+          if (data) {
+            store.getLobbyGuest();
+            navigate(`/lobby/${codeValue}`);
+          } else {
+            setCodeStyle("warning");
+          }
+        })
       : setCodeStyle("warning");
   };
 

@@ -8,6 +8,7 @@ import Header from "shared/components/Header";
 import Help from "shared/components/Help";
 import InputField from "shared/components/InputField";
 import { InputStyle } from "shared/components/InputField/types/types";
+import { apiService } from "api/apiService";
 
 import * as I from "../types/types";
 
@@ -33,27 +34,7 @@ const LogIn = ({}: I.LogInProps) => {
 
   const onSubmit = async () => {
     if (loginValue && passwordValue) {
-      await axios
-        .post(
-          "/auth/login",
-          {
-            grant_type: "password",
-            username: loginValue,
-            password: passwordValue,
-          },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
-        .then((res) => {
-          currentUser.setUserToken(res.data.access_token);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-
+      apiService.login(loginValue, passwordValue);
       navigate("/");
     } else {
       !loginValue && setLoginStyle("warning");

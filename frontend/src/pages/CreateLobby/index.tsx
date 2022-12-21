@@ -12,6 +12,7 @@ import * as I from "./types/types";
 import { useStore } from "../../stores";
 import axios from "axios";
 import { FormWrapper } from "shared/components/FormWrapper";
+import { apiService } from "api/apiService";
 
 const INITIAL_DATA: I.CreateFormData = {
   name: "",
@@ -35,39 +36,31 @@ export const CreateLobby = ({ className }: I.CreateLobbyProps) => {
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    await axios
-      .post(
-        "/lobby/create_lobby",
-        {
-          lobby_name: data["name"],
-          event_date: data["date"],
-          is_started: false,
-        },
-        {
-          params: {
-            token: currentUser.userToken,
-          },
-        }
-      )
-      .then(function (response) {
-        lobbyStore.setLobbyCode(response.data.lobby.id);
-        lobbyStore.setLobbyName(response.data.lobby.name);
-        lobbyStore.setLobbyEventDate(response.data.lobby.event_date);
-        lobbyStore.setLobbyStarted(response.data.lobby.started);
+    const lobbyInfo = {
+      name: data.name,
+    };
+
+    await apiService
+      .createLobby(lobbyInfo)
+      .then((response) => {
+        lobbyStore.setLobbyCode(response.data.code);
+        lobbyStore.setLobbyName(response.data.name);
+        lobbyStore.setLobbyEventDate(response.data.event_date);
+        lobbyStore.setLobbyStarted(response.data.started);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
 
-    await axios
-      .post(`/guests/create_guest`, {
-        lobby_id: lobbyStore.name,
-        user_id: currentUser.userId,
-        is_host: true,
-      })
-      .then((res) => {
-        currentUser.setUserIsHost(true);
-      });
+    const hostData = {
+      lobby: lobbyStore.code!,
+      user: currentUser.userId!,
+      is_host: true,
+    };
+
+    await apiService.createHost(hostData).then(() => {
+      currentUser.setUserIsHost(true);
+    });
 
     navigate(`/lobby/${lobbyStore.code}}`);
   };

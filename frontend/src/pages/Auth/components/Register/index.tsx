@@ -12,6 +12,7 @@ import axios from "axios";
 import { useMultistepForm } from "shared/hooks/useMultistepForm";
 import PersonalData from "./PersonalData";
 import GeneralData from "./GeneralData";
+import { apiService } from "api/apiService";
 
 const INITIAL_DATA: I.RegisterFormData = {
   login: "",
@@ -43,20 +44,25 @@ const Register = ({}: I.RegisterProps) => {
     e.preventDefault();
     if (!isLastStep) return next();
 
-    await axios
-      .post("/auth/create_user", {
-        name: data["name"],
-        username: data["login"],
-        preferences: data["preferences"],
-        password: data["password"],
+    const userData = {
+      name: data.name,
+      username: data.login,
+      preferences: data.preferences,
+      password: data.password,
+    };
+
+    await apiService.register(userData).catch((error) => {
+      console.log(error);
+    });
+
+    await apiService
+      .login(userData.username, userData.password)
+      .then(() => {
+        const userToken = localStorage.getItem("access_token");
+        currentUser.setUserToken(userToken);
       })
-      .then(function (response) {
-        currentUser.setUserToken(response.data.created_user.token);
-        currentUser.setUserId(response.data.created_user.id);
+      .then(() => {
         navigate("/");
-      })
-      .catch(function (error) {
-        console.log(error);
       });
   };
 
