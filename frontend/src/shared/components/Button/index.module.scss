@@ -1,37 +1,37 @@
-@import '../../../scss/variables';
+@import "../../../scss/variables";
 
 .button {
-    font-size: 25px;
-    font-weight: 400;
-    padding: 10px 45px;
-    background: $common;
-    color: $common-text;
-    border: none;
-    border-radius: $button-border-radius;
-    box-shadow: none;
-    cursor: pointer;
+  font-size: 2.5rem;
+  font-weight: 400;
+  padding: 1rem 4.5rem;
+  background: $common;
+  color: $common-text;
+  border: none;
+  border-radius: $button-border-radius;
+  box-shadow: none;
+  cursor: pointer;
 }
 
 .style_primary {
-    background-color: $primary  !important;
-    color: $primary-text  !important;
+  background-color: $primary !important;
+  color: $primary-text !important;
 }
 
 .style_info {
-    padding: 12px 20px;
-    font-size: 24px;
-    background-color: $info  !important;
-    color: $info-text  !important;
+  padding: 1.2rem 2rem;
+  font-size: 2.4rem;
+  background-color: $info !important;
+  color: $info-text !important;
 }
 
 .style_danger {
-    background-color: $danger  !important;
-    color: $danger-text  !important;
+  background-color: $danger !important;
+  color: $danger-text !important;
 }
 
 .style_shuffle {
-    padding: 12px 25px;
-    font-size: 24px;
-    background-color: $shuffle  !important;
-    color: $shuffle-text  !important;
+  padding: 1.2rem 2.5rem;
+  font-size: 2.4rem;
+  background-color: $shuffle !important;
+  color: $shuffle-text !important;
 }
