@@ -22,7 +22,7 @@ const LobbyPlayAdmin = ({ giving }: I.LobbyPlayAdminProps) => {
       lobbyStore.setLobbyStarted(true);
     });
 
-    await store.getLobbyGuest();
+    // await store.getLobbyGuest();
 
     const penis = JSON.parse(localStorage.getItem("guest_id")!);
 
@@ -49,18 +49,13 @@ const LobbyPlayAdmin = ({ giving }: I.LobbyPlayAdminProps) => {
       />
       <Header text="Ты даришь подарок игроку" />
       <Header className="mb-23" text={giving} headerStyle="italic" />
-      <Button
+      {lobbyStore.preferences && <Button
         onClick={popupStore.changeValue}
         className="mb-40"
         label="Подсказка"
         buttonStyle="info"
-      />
-      {popupStore.isOpened && (
-        <Hint
-          handleButtonClick={popupStore.changeValue}
-          message="ddsfsdfljnsdfksdbfg asjfgkjs"
-        />
-      )}
+      />}
+      {popupStore.isOpened && <Hint handleButtonClick={popupStore.changeValue} message={lobbyStore.preferences ? lobbyStore.preferences : ''} />}
       <Button label="Перемешать" buttonStyle="shuffle" onClick={onClickStart} />
       <Help className="mt-10" message="Появились новые гости?" />
     </>

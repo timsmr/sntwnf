@@ -12,12 +12,12 @@ import { apiService } from "api/apiService";
 
 import * as I from "../types/types";
 
-const LogIn = ({}: I.LogInProps) => {
+const LogIn = ({ }: I.LogInProps) => {
   const [loginValue, setLoginValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [loginStyle, setLoginStyle] = useState<InputStyle>("");
   const [passwordStyle, setPasswordStyle] = useState<InputStyle>("");
-  const { currentUser } = useStore();
+  const { currentUser, getUserId } = useStore();
   const navigate = useNavigate();
 
   const onChangeLoginInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +34,11 @@ const LogIn = ({}: I.LogInProps) => {
 
   const onSubmit = async () => {
     if (loginValue && passwordValue) {
-      apiService.login(loginValue, passwordValue);
+      await apiService.login(loginValue, passwordValue)
+
+      currentUser.setUserToken(localStorage.getItem('access_token'))
+      currentUser.setUserId(getUserId());
+
       navigate("/");
     } else {
       !loginValue && setLoginStyle("warning");

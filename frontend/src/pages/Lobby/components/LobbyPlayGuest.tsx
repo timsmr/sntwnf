@@ -17,8 +17,8 @@ const LobbyPlayGuest = ({ giving }: I.LobbyPlayGuestProps) => {
             <Header text={lobbyStore.code ? lobbyStore.code : ''} headerStyle='code' />
             <Header text='Ты даришь подарок игроку' />
             <Header className='mb-23' text={giving} headerStyle='italic' />
-            <Button onClick={popupStore.changeValue} className='mb-40' label='Подсказка' buttonStyle='info' />
-            {popupStore.isOpened && <Hint handleButtonClick={popupStore.changeValue} message='ddsfsdfljnsdfksdbfg asjfgkjs' />}
+            {lobbyStore.preferences && <Button onClick={popupStore.changeValue} className='mb-40' label='Подсказка' buttonStyle='info' />}
+            {popupStore.isOpened && <Hint handleButtonClick={popupStore.changeValue} message={lobbyStore.preferences ? lobbyStore.preferences : ''} />}
         </>
     )
 }

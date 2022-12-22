@@ -16,22 +16,21 @@ export const Lobby = observer(function Lobby({ className }: I.LobbyProps) {
   const lobbyStyles = cn(styles.lobby, className);
 
   const { currentUser, lobbyStore } = useStore();
-  const navigate = useNavigate();
 
   return (
     <div className={lobbyStyles}>
-      <Link to="/">
+      <Link to="/" onClick={() => lobbyStore.clear()}>
         <BackButton />
       </Link>
 
       {currentUser.isHost ? (
         lobbyStore.started ? (
-          <LobbyPlayAdmin giving="lolkek" />
+          <LobbyPlayAdmin giving={lobbyStore.givingName ? lobbyStore.givingName : ''} />
         ) : (
           <LobbyWaitAdmin />
         )
       ) : lobbyStore.started ? (
-        <LobbyPlayGuest giving="lolkek" />
+        <LobbyPlayGuest giving={lobbyStore.givingName ? lobbyStore.givingName : ''} />
       ) : (
         <LobbyWaitGuest />
       )}

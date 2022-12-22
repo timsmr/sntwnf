@@ -24,7 +24,7 @@ export const Auth = observer(function Auth({ className }: I.AuthProps) {
         if (authType === 'login' || authType === 'register') {
             authStore.changePath(authType)
         }
-    }, [authType]);
+    }, [authType, authStore]);
 
     return (
         <div className={AuthStyles}>

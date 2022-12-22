@@ -5,6 +5,7 @@ class LobbyStore {
   name: string | null = null;
   event_date: string | null = null;
   started: boolean | null = null;
+  givingName: string | null = null;
   giving_to: string | null = null;
   preferences: string | null = null;
 
@@ -15,12 +16,14 @@ class LobbyStore {
       code: observable,
       started: observable,
       giving_to: observable,
+      givingName: observable,
       preferences: observable,
       setLobbyCode: action,
       setLobbyName: action,
       setLobbyEventDate: action,
       setLobbyStarted: action,
       setGivingTo: action,
+      setGivingName: action,
       setPref: action,
     });
   }
@@ -47,11 +50,38 @@ class LobbyStore {
 
   setGivingTo = (value: LobbyStore["giving_to"]) => {
     this.giving_to = value;
+    value && localStorage.setItem("givingTo", value);
+  };
+
+  setGivingName = (value: LobbyStore["givingName"]) => {
+    this.givingName = value;
+    value && localStorage.setItem("givingName", value);
   };
 
   setPref = (value: LobbyStore["preferences"]) => {
     this.preferences = value;
+    value && localStorage.setItem("preferences", value);
   };
+
+  clear = () => {
+    this.code = null;
+    localStorage.removeItem("lobbyCode")
+
+    this.name = null;
+    localStorage.removeItem("lobbyName")
+
+    this.event_date = null;
+    localStorage.removeItem("lobbyEventDate")
+
+    this.started = null;
+    localStorage.removeItem("lobbyStarted")
+
+    this.giving_to = null;
+    localStorage.removeItem("givingTo")
+
+    this.preferences = null;
+    localStorage.removeItem("preferences")
+  }
 }
 
 export { LobbyStore };

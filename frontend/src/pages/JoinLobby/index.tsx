@@ -16,7 +16,7 @@ import { apiService } from "api/apiService";
 export const JoinLobby = ({ className }: I.JoinLobbyProps) => {
   const AuthStyles = cn(styles.auth, className);
 
-  const store = useStore();
+  const { currentUser, lobbyStore, setGuestId, getGivingToGuest } = useStore();
 
   const [codeValue, setCodeValue] = useState("");
   const [codeStyle, setCodeStyle] = useState<InputStyle>("");
@@ -29,14 +29,44 @@ export const JoinLobby = ({ className }: I.JoinLobbyProps) => {
 
   const onSubmit = async () => {
     codeValue
-      ? apiService.checkIfLobbyExists(codeValue).then((data) => {
-          if (data) {
-            store.getLobbyGuest();
-            navigate(`/lobby/${codeValue}`);
-          } else {
-            setCodeStyle("warning");
-          }
-        })
+      ? await apiService.checkIfLobbyExists(codeValue).then((res) => {
+        if (res.data) {
+
+          lobbyStore.setLobbyCode(res.data.code)
+          lobbyStore.setLobbyName(res.data.name)
+          lobbyStore.setLobbyEventDate(res.data.event_date)
+          lobbyStore.setLobbyStarted(res.data.started)
+
+          apiService.getLobbyGuests(codeValue).then((res) => {
+            const ept = res.data.find(
+              (item: any) => item.user === currentUser.userId
+            );
+
+            if (ept) {
+              setGuestId(ept.id)
+
+            } else {
+
+              const guestInfo = {
+                lobby: codeValue,
+                user: currentUser.userId,
+                is_host: false,
+              }
+
+              apiService.createGuest(guestInfo).then((res) => {
+                setGuestId(res.data.id)
+              })
+
+              getGivingToGuest();
+
+            }
+          });
+
+          navigate(`/lobby/${codeValue}`);
+        } else {
+          setCodeStyle("warning");
+        }
+      })
       : setCodeStyle("warning");
   };
 
@@ -54,7 +84,7 @@ export const JoinLobby = ({ className }: I.JoinLobbyProps) => {
         onChange={onChangeCodeInput}
         inputStyle={codeStyle}
       />
-      <Button label="Далее" buttonStyle="primary" onClick={onSubmit} />
+      <Button label="Далее" type="button" buttonStyle="primary" onClick={onSubmit} />
     </div>
   );
 };

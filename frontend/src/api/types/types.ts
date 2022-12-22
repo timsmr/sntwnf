@@ -11,7 +11,7 @@ export type LobbyInfo = {
 
 export type HostInfo = {
   lobby: string;
-  user: number;
+  user: number | null;
   is_host: boolean;
 };
 

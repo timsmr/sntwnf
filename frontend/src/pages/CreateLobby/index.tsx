@@ -10,7 +10,6 @@ import InputField from "./../../shared/components/InputField";
 
 import * as I from "./types/types";
 import { useStore } from "../../stores";
-import axios from "axios";
 import { FormWrapper } from "shared/components/FormWrapper";
 import { apiService } from "api/apiService";
 
@@ -30,7 +29,7 @@ export const CreateLobby = ({ className }: I.CreateLobbyProps) => {
     });
   };
 
-  const { currentUser, lobbyStore } = useStore();
+  const { currentUser, lobbyStore, setGuestId } = useStore();
   const navigate = useNavigate();
 
   const onSubmit = async (e: FormEvent) => {
@@ -58,8 +57,9 @@ export const CreateLobby = ({ className }: I.CreateLobbyProps) => {
       is_host: true,
     };
 
-    await apiService.createHost(hostData).then(() => {
-      currentUser.setUserIsHost(true);
+    await apiService.createHost(hostData).then((res) => {
+      currentUser.setUserIsHost(res.data.is_host);
+      setGuestId(res.data.id)
     });
 
     navigate(`/lobby/${lobbyStore.code}}`);

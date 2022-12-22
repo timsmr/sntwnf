@@ -30,8 +30,8 @@ class ApiService {
         if (typeof error.response === "undefined") {
           alert(
             "A server/network error occurred. " +
-              "Looks like CORS might be the problem. " +
-              "Sorry about this - we will get it fixed shortly."
+            "Looks like CORS might be the problem. " +
+            "Sorry about this - we will get it fixed shortly."
           );
           return Promise.reject(error);
         }
@@ -40,7 +40,7 @@ class ApiService {
           error.response.status === 401 &&
           originalRequest.url === baseUrl + "token/refresh/"
         ) {
-          window.location.href = "/login/";
+          window.location.href = "auth/login/";
           return Promise.reject(error);
         }
 
@@ -78,11 +78,11 @@ class ApiService {
                 });
             } else {
               console.log("Refresh token is expired", tokenParts.exp, now);
-              window.location.href = "/login/";
+              window.location.href = "auth/login/";
             }
           } else {
             console.log("Refresh token not available.");
-            window.location.href = "/login/";
+            window.location.href = "auth/login/";
           }
         }
 
@@ -123,15 +123,21 @@ class ApiService {
       .then((res) => {
         localStorage.setItem("access_token", res.data.access);
         localStorage.setItem("refresh_token", res.data.refresh);
+        // localStorage.setItem("userId", this.getUserId(res.data.access))
         this.axiosInstance.defaults.headers["Authorization"] =
           "JWT " + localStorage.getItem("access_token");
       });
   };
 
-  public checkIfLobbyExists = (codeValue: string): Promise<boolean> => {
-    return this.axiosInstance(`lobby/${codeValue}`).then((res) => {
-      return res.data;
-    });
+  getUserId = (token: string) => {
+    if (!token) return;
+    return JSON.parse(atob(token!.split(".")[1]))[
+      "user_id"
+    ];
+  };
+
+  public checkIfLobbyExists = (codeValue: string) => {
+    return this.axiosInstance(`lobby/${codeValue}`)
   };
 
   public register = (userInfo: T.UserInfo) => {
@@ -142,7 +148,15 @@ class ApiService {
     return this.axiosInstance.post("lobby/", { ...lobbyInfo });
   };
 
+  public getLobby = (codeLobby: string | null) => {
+    return this.axiosInstance(`/lobby/${codeLobby}/`)
+  }
+
   public createHost = (data: T.HostInfo) => {
+    return this.axiosInstance.post(`/guest/`, { ...data });
+  };
+
+  public createGuest = (data: T.HostInfo) => {
     return this.axiosInstance.post(`/guest/`, { ...data });
   };
 
@@ -158,17 +172,17 @@ class ApiService {
     });
   };
 
-  public getGuest = (guestId: number) => {
+  public getGuest = (guestId: number | null) => {
     return this.axiosInstance.get(`/guest/${guestId}/`);
   };
 
-  public getUser = async (userId: number): Promise<T.GivingToResp> => {
+  public getUser = async (userId: number) => {
     return this.axiosInstance(`/user/${userId}`).then(
       (response) => response.data
     );
   };
 
-  public getLobbyGuests = (lobbyId: string) => {
+  public getLobbyGuests = (lobbyId: string | null) => {
     return this.axiosInstance(`/lobby/${lobbyId}/guest/`);
   };
 }
