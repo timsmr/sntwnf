@@ -1,0 +1,33 @@
+#docker-compose.yml
+version: "3.0"
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: santa
+      POSTGRES_PASSWORD: santapassword
+  backend:
+    build:
+      context: ./backend_django
+    command: gunicorn santa.wsgi --bind 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+  frontend:
+    build:
+      context: ./frontend
+    volumes:
+      - react_build:/react/build
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:8080
+    volumes:
+      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
+      - react_build:/var/www/react
+    depends_on:
+      - backend
+      - frontend
+volumes:
+  react_build:
+
