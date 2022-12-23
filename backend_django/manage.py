@@ -2,10 +2,12 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from time import sleep
 
 
 def main():
     """Run administrative tasks."""
+    sleep(5)
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "santa.settings")
     try:
         from django.core.management import execute_from_command_line

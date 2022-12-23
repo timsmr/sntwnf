@@ -1,6 +1,6 @@
-FROM python:3.8-alpine
+FROM python:3.8.13-slim-buster
 ENV PYTHONUNBUFFERED 1
-WORKDIR /django
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+WORKDIR /backend_django
+COPY . /backend_django
+RUN pip3 install -r requirements.txt; python3 manage.py migrate
 COPY . .
