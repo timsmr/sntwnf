@@ -1,6 +1,6 @@
-FROM python:3.9
+FROM python:3
+ENV PYTHONUNBUFFERED=1
 WORKDIR /backend_django
 COPY . /backend_django
-RUN pip install -r requirements.txt
-EXPOSE 8000
-CMD python manage.py makemigrations; python manage.py migrate; python manage.py runserver
+RUN pip3 install -r requirements.txt
+COPY . .
