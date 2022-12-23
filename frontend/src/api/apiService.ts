@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestHeaders } from "axios";
 import * as T from "./types/types";
 
-const baseUrl = "http://127.0.0.1:8000/api/";
+const baseUrl = "http://85.193.83.101:8000/api/";
 
 class ApiService {
   private axiosInstance!: AxiosInstance;
