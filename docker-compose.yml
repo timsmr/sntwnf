@@ -21,7 +21,7 @@ services:
              python manage.py runserver 0.0.0.0:8000"
     environment:
       - DB_PORT=5432
-      - SECRET_KEY=qe#qvx-jw-yff^rzj-hgqx#+z()^uapf**fu1&c&0%bo9&y$ms
+      - SECRET_KEY=<your secret key>
       - DB_NAME=sntwnf
       - DB_USER=admin
       - DB_PASSWORD=admin
