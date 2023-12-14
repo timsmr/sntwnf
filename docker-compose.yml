@@ -3,19 +3,29 @@
 version: "3.8"
 services:
   db:
-    image: postgres:latest  # image: pgdb-v2
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_DB=sntwnf
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=sntwnf
       
-
   backend:
     restart: always
     build:
       context: ./backend_django
-    command: gunicorn santa.wsgi --bind 0.0.0.0:8000
-    # command: python3 manage.py runserver 0.0.0.0:8000
+    # command: gunicorn santa.wsgi --bind 0.0.0.0:8000
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_PORT=5432
+      - SECRET_KEY=qe#qvx-jw-yff^rzj-hgqx#+z()^uapf**fu1&c&0%bo9&y$ms
+      - DB_NAME=sntwnf
+      - DB_USER=admin
+      - DB_PASSWORD=admin
+      - DB_HOST=db
     ports:
       - "8000:8000"
     depends_on:
@@ -43,3 +53,4 @@ services:
 
 volumes:
   react_build:
+  postgres_data:

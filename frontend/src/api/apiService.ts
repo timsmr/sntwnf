@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestHeaders } from "axios";
 import * as T from "./types/types";
 
-const baseUrl = "http://85.193.83.101:8000/api/";
+const baseUrl = "http://localhost:8000/api/";
 
 class ApiService {
   private axiosInstance!: AxiosInstance;
@@ -26,15 +26,6 @@ class ApiService {
       },
       async (error) => {
         const originalRequest = error.config;
-
-        if (typeof error.response === "undefined") {
-          alert(
-            "A server/network error occurred. " +
-            "Looks like CORS might be the problem. " +
-            "Sorry about this - we will get it fixed shortly."
-          );
-          return Promise.reject(error);
-        }
 
         if (
           error.response.status === 401 &&
