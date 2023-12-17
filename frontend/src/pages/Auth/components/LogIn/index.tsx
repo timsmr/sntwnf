@@ -1,32 +1,31 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "stores";
-
+import styles from "./index.module.scss";
 import { Button } from "shared/components/Button";
 import { Header } from "shared/components/Header";
 import { Help } from "shared/components/Help";
 import { InputField } from "shared/components/InputField";
-import { InputStyle } from "shared/components/InputField/types/types";
 import { apiService } from "api/apiService";
 
 const LogIn = () => {
   const [loginValue, setLoginValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
-  const [loginStyle, setLoginStyle] = useState<InputStyle>("");
-  const [passwordStyle, setPasswordStyle] = useState<InputStyle>("");
+  const [isLoginInvalid, setIsLoginInvalid] = useState(false);
+  const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
   const { currentUser, getUserId } = useStore();
   const navigate = useNavigate();
 
   const onChangeLoginInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLoginValue(event.target.value);
-    setLoginStyle("");
+    setIsLoginInvalid(false);
   };
 
   const onChangePasswordInput = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setPasswordValue(event.target.value);
-    setPasswordStyle("");
+    setIsPasswordInvalid(false);
   };
 
   const onSubmit = async () => {
@@ -38,8 +37,8 @@ const LogIn = () => {
 
       navigate("/");
     } else {
-      !loginValue && setLoginStyle("warning");
-      !passwordStyle && setPasswordStyle("warning");
+      !loginValue && setIsLoginInvalid(true);
+      !passwordValue && setIsPasswordInvalid(true);
     }
   };
 
@@ -50,7 +49,7 @@ const LogIn = () => {
         className="mb-15"
         inputPlaceholder="Логин"
         value={loginValue}
-        inputStyle={loginStyle}
+        isInvalidValue={isLoginInvalid}
         onChange={onChangeLoginInput}
       />
       <InputField
@@ -58,10 +57,10 @@ const LogIn = () => {
         inputPlaceholder="Пароль"
         inputType={"password"}
         value={passwordValue}
-        inputStyle={passwordStyle}
+        isInvalidValue={isPasswordInvalid}
         onChange={onChangePasswordInput}
       />
-      <Button label="Войти" buttonStyle="primary" onClick={onSubmit} />
+      <Button className={styles.button} label="Войти" onClick={onSubmit} />
       <Help
         className="mt-10"
         message="Нет аккаунта?"

@@ -1,10 +1,8 @@
-
+@import "shared/ui/adaptive";
 
 .inputField {
   position: relative;
   padding: 0 2rem;
-  height: 5rem;
-  width: 30rem;
   font-size: 2.2rem;
   line-height: 1;
   color: rgba(0, 0, 0, 0.7);
@@ -12,6 +10,7 @@
   border: none;
   border-radius: 15px;
   cursor: pointer;
+  text-align: center;
 
   &::placeholder {
     color: rgba(0, 0, 0, 0.5);
@@ -56,7 +55,7 @@
   }
 }
 
-.style_warning {
+.warning {
   outline: 1px solid #b01515;
   background-image: url("../../../../public/img/warning_icon.svg");
   background-repeat: no-repeat;
@@ -79,5 +78,12 @@
   &[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
+  }
+}
+
+@include screen-s {
+  .inputField {
+    font-size: get-mobile-unit(20);
+    border-radius: get-mobile-unit(15);
   }
 }

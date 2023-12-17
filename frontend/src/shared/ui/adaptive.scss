@@ -1,0 +1,68 @@
+@use "sass:math" as *;
+
+$screen-xxs: 270;
+$screen-xs: 375;
+$screen-s: 568;
+$screen-m: 860;
+$screen-l: 900;
+$screen-xl: 1280;
+$screen-xxl: 1600;
+$screen-xxxl: 1900;
+
+@function get-pixels-size($size) {
+  @return $size * 1px;
+}
+
+@mixin screen-xs {
+  @media (min-width: get-pixels-size($screen-xs)) {
+    @content;
+  }
+}
+
+@mixin screen-s {
+  @media (min-width: 0) and (max-width: get-pixels-size($screen-s - 1)) {
+    @content;
+  }
+}
+
+@mixin screen-m {
+  @media (min-width: get-pixels-size($screen-s)) and (max-width: get-pixels-size($screen-l - 1)) {
+    @content;
+  }
+}
+
+@mixin screen-l {
+  @media (min-width: get-pixels-size($screen-l)) {
+    @content;
+  }
+}
+
+@mixin screen-xl {
+  @media (min-width: get-pixels-size($screen-xl)) {
+    @content;
+  }
+}
+
+@mixin screen-xxl {
+  @media (min-width: get-pixels-size($screen-xxl)) {
+    @content;
+  }
+}
+
+@mixin screen-xxxl {
+  @media (min-width: get-pixels-size($screen-xxxl)) {
+    @content;
+  }
+}
+
+@function get-rem-for-width($width, $size) {
+  @return ceil($size / ($width * 10 / 1360) * 100) / 100 * 1rem;
+}
+
+@function get-mobile-unit($size) {
+  @return calc(var(--mobile-unit) * #{$size});
+}
+
+@function get-main-unit($size) {
+  @return get-rem-for-width($screen-xl, $size);
+}

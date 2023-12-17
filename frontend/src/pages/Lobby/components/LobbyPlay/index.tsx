@@ -7,6 +7,7 @@ import { Help } from "shared/components/Help";
 import { useStore } from "stores";
 import * as T from "./types/types";
 import { Hint } from "../Hint";
+import styles from "./index.module.scss";
 
 export const LobbyPlay = observer(({ giving, isAdmin }: T.LobbyPlayProps) => {
   const { popupStore, lobbyStore } = useStore();
@@ -50,9 +51,8 @@ export const LobbyPlay = observer(({ giving, isAdmin }: T.LobbyPlayProps) => {
       {lobbyStore.preferences && (
         <Button
           onClick={popupStore.changeValue}
-          className="mb-40"
+          className={styles.button}
           label="Подсказка"
-          buttonStyle="info"
         />
       )}
       {popupStore.isOpened && (
@@ -66,7 +66,7 @@ export const LobbyPlay = observer(({ giving, isAdmin }: T.LobbyPlayProps) => {
         <>
           <Button
             label="Перемешать"
-            buttonStyle="shuffle"
+            className={styles.button}
             onClick={onClickStart}
           />
           <Help className="mt-10" message="Появились новые гости?" />

@@ -8,7 +8,7 @@ export const Hint = ({ message, handleButtonClick }: I.HintProps) => {
     <div className={styles.hint_background}>
       <div className={styles.hint}>
         <p className={styles.info}>{message}</p>
-        <Button onClick={handleButtonClick} label="Ок" buttonStyle="info" />
+        <Button onClick={handleButtonClick} label="Ок" />
       </div>
     </div>
   );

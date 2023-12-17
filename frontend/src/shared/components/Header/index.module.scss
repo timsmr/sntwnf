@@ -1,4 +1,4 @@
-
+@import "shared/ui/adaptive";
 
 .header {
   font-size: 3.5rem;
@@ -21,4 +21,10 @@
 
 .style_italic {
   font-style: italic;
+}
+
+@include screen-s {
+  .header {
+    font-size: get-mobile-unit(40);
+  }
 }

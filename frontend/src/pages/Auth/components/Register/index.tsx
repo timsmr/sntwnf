@@ -75,12 +75,12 @@ const Register = () => {
         {step}
         <div className={styles.buttonDiv}>
           {!isFirstStep && (
-            <Button label="Назад" buttonStyle="primary" onClick={back} />
+            <Button label="Назад" className={styles.button} onClick={back} />
           )}
 
           <Button
             label={isLastStep ? "Готово" : "Далее"}
-            buttonStyle="primary"
+            className={styles.button}
             type="submit"
           />
         </div>

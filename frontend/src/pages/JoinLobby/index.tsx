@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import cn from "classnames";
 import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "stores";
-
 import styles from "./index.module.scss";
 import { BackButton } from "../../shared/components/BackButton";
 import { Button } from "./../../shared/components/Button";
 import { Header } from "./../../shared/components/Header";
 import { InputField } from "./../../shared/components/InputField";
-import { InputStyle } from "shared/components/InputField/types/types";
 
 import * as I from "./types/types";
 import { apiService } from "api/apiService";
@@ -19,12 +17,12 @@ export const JoinLobby = ({ className }: I.JoinLobbyProps) => {
   const { currentUser, lobbyStore, setGuestId, getGivingToGuest } = useStore();
 
   const [codeValue, setCodeValue] = useState("");
-  const [codeStyle, setCodeStyle] = useState<InputStyle>("");
+  const [isCodeInvalid, setIsCodeInvalid] = useState(false);
   const navigate = useNavigate();
 
   const onChangeCodeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCodeValue(event.target.value);
-    setCodeStyle("");
+    setIsCodeInvalid(false);
   };
 
   const onSubmit = async () => {
@@ -60,30 +58,30 @@ export const JoinLobby = ({ className }: I.JoinLobbyProps) => {
 
             navigate(`/lobby/${codeValue}`);
           } else {
-            setCodeStyle("warning");
+            setIsCodeInvalid(true);
           }
         })
-      : setCodeStyle("warning");
+      : setIsCodeInvalid(true);
   };
 
   return (
     <div className={AuthStyles}>
       <Link to="/">
-        <BackButton />
+        <BackButton className={styles.backButton} />
       </Link>
-      <Header className="mb-23" text="Код лобби" />
+      <Header className={styles.title} text="Код лобби" />
       <InputField
-        className="mb-15"
+        className={styles.input}
         inputPlaceholder="******"
         inputMaxLength={6}
         value={codeValue}
         onChange={onChangeCodeInput}
-        inputStyle={codeStyle}
+        isInvalidValue={isCodeInvalid}
       />
       <Button
         label="Далее"
         type="button"
-        buttonStyle="primary"
+        className={styles.button}
         onClick={onSubmit}
       />
     </div>

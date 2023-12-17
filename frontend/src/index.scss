@@ -1,11 +1,16 @@
-
-
 body {
   background: linear-gradient(-45deg, #ffffff, rgba(#9f00ea, 0.4), #93b1ff);
   background-size: 400% 400%;
   overflow: hidden;
   animation: gradient 15s ease infinite;
   height: 100vh;
+
+  --mobile-unit: 0.3125vw;
+
+  @media (min-width: 568px) {
+    // 100 / 568 * 1vw;
+    --mobile-unit: 0.176vw;
+  }
 }
 
 @keyframes gradient {

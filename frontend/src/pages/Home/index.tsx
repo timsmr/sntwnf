@@ -1,6 +1,4 @@
-import React from "react";
 import cn from "classnames";
-
 import styles from "./index.module.scss";
 import { Button } from "../../shared/components/Button";
 import { Link } from "react-router-dom";

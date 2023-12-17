@@ -90,7 +90,7 @@ export const CreateLobby = ({ className }: I.CreateLobbyProps) => {
             inputPlaceholder="dd/mm/yyyy"
           />
         </FormWrapper>
-        <Button label="Создать" buttonStyle="primary" type="submit" />
+        <Button label="Создать" className={styles.button} type="submit" />
       </form>
     </div>
   );

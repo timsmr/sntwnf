@@ -1,5 +1,3 @@
-
-
 .auth {
   position: relative;
   display: flex;
@@ -19,4 +17,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.button {
+  background-color: #525ec7;
+  color: #ffffff;
 }

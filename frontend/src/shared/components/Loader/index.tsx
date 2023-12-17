@@ -1,7 +1,6 @@
 import styles from "./index.module.scss";
-import * as I from "./types/interfaces";
 
-export const Loader = ({}: I.LoaderProps) => {
+export const Loader = () => {
   return (
     <svg
       className={styles.loader}

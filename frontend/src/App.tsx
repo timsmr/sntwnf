@@ -8,7 +8,6 @@ import { CreateLobby } from "./pages/CreateLobby";
 import { useStore } from "./stores";
 import { useLayoutEffect } from "react";
 import { PrivateRoute } from "shared/components/PrivateRoute";
-import { Test } from "pages/Test";
 import { Lobby } from "pages/Lobby";
 import { getFontSize } from "shared/libs/getFontSize";
 
@@ -68,7 +67,6 @@ const App = () => {
           }
         />
         <Route path="*" element={<NotFound />} />
-        <Route path="/test" element={<Test />} />
       </Routes>
     </div>
   );

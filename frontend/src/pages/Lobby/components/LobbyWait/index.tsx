@@ -5,6 +5,7 @@ import { Header } from "shared/components/Header";
 import { Help } from "shared/components/Help";
 import { Loader } from "shared/components/Loader";
 import * as T from "./types/types";
+import styles from "./index.module.scss";
 
 export const LobbyWait = ({ isAdmin }: T.LobbyWaitProps) => {
   const { lobbyStore, getGivingToGuest } = useStore();
@@ -36,10 +37,10 @@ export const LobbyWait = ({ isAdmin }: T.LobbyWaitProps) => {
         <>
           <Button
             label="Начать!"
-            buttonStyle="primary"
+            className={styles.button}
             onClick={onClickStart}
           />
-          <Help className="mt-10" message="Все зашли? Нажми начать!" />
+          <Help className={styles.button} message="Все зашли? Нажми начать!" />
         </>
       )}
     </>

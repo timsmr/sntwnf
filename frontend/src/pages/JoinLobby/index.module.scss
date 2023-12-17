@@ -1,13 +1,45 @@
-
+@import "shared/ui/adaptive";
 
 .auth {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100rem;
-    height: 65rem;
-    background-color: #ffffff;
-    border-radius: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100rem;
+  height: 65rem;
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+
+.title {
+  margin-bottom: 23rem;
+}
+
+.input {
+  margin-bottom: 15rem;
+}
+
+.button {
+  background-color: #525ec7;
+  color: #ffffff;
+}
+
+@include screen-s {
+  .title {
+    margin-bottom: get-mobile-unit(20);
+  }
+
+  .backButton {
+    width: get-mobile-unit(15);
+    height: get-mobile-unit(15);
+    top: get-mobile-unit(15);
+    left: get-mobile-unit(15);
+    border-radius: get-mobile-unit(5);
+  }
+
+  .auth {
+    width: get-mobile-unit(290);
+    height: get-mobile-unit(500);
+  }
 }
