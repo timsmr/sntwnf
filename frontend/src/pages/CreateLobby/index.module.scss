@@ -1,4 +1,4 @@
-@import "../../scss/variables";
+
 
 .auth {
   position: relative;
@@ -6,10 +6,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: $main-width;
-  height: $main-height;
-  background-color: $white;
-  border-radius: $border-radius;
+  width: 100rem;
+  height: 65rem;
+  background-color: #ffffff;
+  border-radius: 15px;
 }
 
 .form {

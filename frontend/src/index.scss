@@ -1,7 +1,7 @@
-@import './scss/variables';
+
 
 body {
-  background: linear-gradient(-45deg, $background-white, $background-purple, $background-blue);
+  background: linear-gradient(-45deg, #ffffff, rgba(#9f00ea, 0.4), #93b1ff);
   background-size: 400% 400%;
   overflow: hidden;
   animation: gradient 15s ease infinite;

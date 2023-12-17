@@ -1,4 +1,4 @@
-@import "../../../scss/variables";
+
 
 .backButton {
   position: absolute;
@@ -7,13 +7,13 @@
   width: 2rem;
   height: 2rem;
   transform: rotate(-45deg);
-  border-top: 6px solid $header;
-  border-left: 6px solid $header;
+  border-top: 6px solid rgba(0, 0, 0, 0.7);
+  border-left: 6px solid rgba(0, 0, 0, 0.7);
   border-radius: 5px;
   cursor: pointer;
 
   &:hover {
-    border-top: 6px solid $black;
-    border-left: 6px solid $black;
+    border-top: 6px solid #000000;
+    border-left: 6px solid #000000;
   }
 }

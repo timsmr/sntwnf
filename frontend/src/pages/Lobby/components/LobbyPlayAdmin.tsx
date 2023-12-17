@@ -1,6 +1,6 @@
 import { apiService } from "api/apiService";
 import { observer } from "mobx-react";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Button from "../../../shared/components/Button";
 import Header from "../../../shared/components/Header";
@@ -11,8 +11,8 @@ import Hint from "./Hint";
 import * as I from "./types/types";
 
 const LobbyPlayAdmin = ({ giving }: I.LobbyPlayAdminProps) => {
-  const { popupStore, lobbyStore, currentUser } = useStore();
-  const store = useStore();
+  const { popupStore, lobbyStore } = useStore();
+  // const store = useStore();
 
   const [givingToId, setGivingTo] = useState<any>(null);
   const [ebal, setEbal] = useState<any>(null);
