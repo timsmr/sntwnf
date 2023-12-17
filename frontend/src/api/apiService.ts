@@ -44,10 +44,12 @@ class ApiService {
 
           if (refreshToken) {
             const tokenParts = JSON.parse(atob(refreshToken.split(".")[1]));
-
+            console.log(tokenParts)
             // exp date in token is expressed in seconds, while now() returns milliseconds:
             const now = Math.ceil(Date.now() / 1000);
 
+            console.log('puk', now)
+            
             if (tokenParts.exp > now) {
               return this.axiosInstance
                 .post("/token/refresh/", {
@@ -119,6 +121,17 @@ class ApiService {
           "JWT " + localStorage.getItem("access_token");
       });
   };
+
+  public logout = (refresh_token:string) => {
+    return this.axiosInstance
+    .post(`user/logout/blacklist/`, {
+      refresh_token: refresh_token
+    })
+    .then((res) => {
+      localStorage.clear()
+      window.location.href='/'
+    });
+  }
 
   getUserId = (token: string) => {
     if (!token) return;

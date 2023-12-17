@@ -1,6 +1,7 @@
 @import "shared/ui/adaptive";
 
 .home {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,6 +18,13 @@
   display: flex;
   flex-flow: row nowrap;
 }
+
+.exitBtn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
 
 @include screen-s {
   .title {
