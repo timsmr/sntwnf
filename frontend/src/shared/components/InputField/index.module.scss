@@ -2,13 +2,13 @@
 
 .inputField {
   position: relative;
-  padding: 0 2rem;
+  padding: 1rem 1.5rem;
   font-size: 2.2rem;
   line-height: 1;
   color: rgba(0, 0, 0, 0.7);
   background-color: #f4f4f4;
   border: none;
-  border-radius: 15px;
+  border-radius: 2rem;
   cursor: pointer;
   text-align: center;
 
@@ -83,7 +83,12 @@
 
 @include screen-s {
   .inputField {
-    font-size: get-mobile-unit(20);
+    font-size: get-mobile-unit(15);
     border-radius: get-mobile-unit(15);
   }
+  .warning {
+    background-size: 6rem 6rem;
+    background-position: right 4rem bottom 50%;
+  }
+
 }
