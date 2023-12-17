@@ -38,19 +38,13 @@ export class RootStore {
       this.lobbyStore.setLobbyStarted(
         Boolean(localStorage.getItem("lobbyStarted"))
       );
-      this.setGuestId(Number(localStorage.getItem('guest_id')))
-      this.getLobbyStarted();
-
-      this.guestId && this.getLobbyGuest();
-
-      this.getGivingToGuest();
+      this.setGuestId(Number(localStorage.getItem("guest_id")));
     }
-
   };
 
   setGuestId = (value: RootStore["guestId"]) => {
     this.guestId = value;
-    value && localStorage.setItem('guest_id', String(value));
+    value && localStorage.setItem("guest_id", String(value));
   };
 
   getUserId = () => {
@@ -60,20 +54,30 @@ export class RootStore {
     ];
   };
 
+  fetchLobbyData = async () => {
+    const promises = [
+      this.getLobbyStarted(),
+      this.guestId && this.getLobbyGuest(),
+      this.getGivingToGuest(),
+    ];
+
+    return Promise.all(promises);
+  };
+
   getGivingToGuest = async () => {
     if (this.lobbyStore.started) {
-      this.guestId && await apiService.getGuest(this.guestId).then((res) => {
-        this.lobbyStore.setGivingTo(res.data.giving_to)
-        apiService.getGuest(Number(this.lobbyStore.giving_to)).then(res => {
-          apiService.getUser(res.data.user).then(res => {
-
-            this.lobbyStore.setGivingName(res.name)
-            this.lobbyStore.setPref(res.preferences)
-          })
-        })
-      })
+      this.guestId &&
+        (await apiService.getGuest(this.guestId).then((res) => {
+          this.lobbyStore.setGivingTo(res.data.giving_to);
+          apiService.getGuest(Number(this.lobbyStore.giving_to)).then((res) => {
+            apiService.getUser(res.data.user).then((res) => {
+              this.lobbyStore.setGivingName(res.name);
+              this.lobbyStore.setPref(res.preferences);
+            });
+          });
+        }));
     }
-  }
+  };
 
   getLobbyGuest = async () => {
     apiService.getLobbyGuests(this.lobbyStore.code).then((res) => {
@@ -81,15 +85,15 @@ export class RootStore {
         (item: any) => item.user === this.currentUser.userId
       );
 
-      ept && this.setGuestId(ept.id)
+      ept && this.setGuestId(ept.id);
     });
   };
 
   getLobbyStarted = async () => {
-    apiService.getLobby(this.lobbyStore.code).then(res => {
-      this.lobbyStore.setLobbyStarted(res.data.started)
-    })
-  }
+    apiService.getLobby(this.lobbyStore.code).then((res) => {
+      this.lobbyStore.setLobbyStarted(res.data.started);
+    });
+  };
 }
 export const RootStoreContext = createContext<RootStore | null>(null);
 export const useStore = () =>

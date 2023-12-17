@@ -2,7 +2,7 @@ import { makeObservable, observable, action } from "mobx";
 
 class CurrentUserStore {
   userToken: string | null = null;
-  isHost: boolean | null = null;
+  isHost: boolean = false;
   userId: number | null = null;
 
   constructor() {

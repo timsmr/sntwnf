@@ -1,10 +1,7 @@
-import React from "react";
-
 import styles from "./index.module.scss";
-
 import * as I from "./types/interfaces";
 
-const Loader = ({}: I.LoaderProps) => {
+export const Loader = ({}: I.LoaderProps) => {
   return (
     <svg
       className={styles.loader}
@@ -35,5 +32,3 @@ const Loader = ({}: I.LoaderProps) => {
     </svg>
   );
 };
-
-export default Loader;

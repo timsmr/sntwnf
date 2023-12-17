@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 import styles from "./index.module.scss";
 import { BackButton } from "../../shared/components/BackButton";
-import Button from "./../../shared/components/Button";
-import Header from "./../../shared/components/Header";
-import InputField from "./../../shared/components/InputField";
+import { Button } from "./../../shared/components/Button";
+import { Header } from "./../../shared/components/Header";
+import { InputField } from "./../../shared/components/InputField";
 
 import * as I from "./types/types";
 

@@ -1,13 +1,10 @@
 import React from "react";
 
 export type LobbyPlayAdminProps = {
-    giving: string;
+  giving: string;
 };
 
-export type LobbyPlayGuestProps = {
-    giving: string;
+export type LobbyPlay = {
+  giving: string;
+  isAdmin: boolean;
 };
-
-export type LobbyWaitAdminProps = {};
-
-export type LobbyWaitGuestProps = {};

@@ -2,8 +2,8 @@ import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "stores";
 
-import Button from "../../../../shared/components/Button";
-import Help from "../../../../shared/components/Help";
+import { Button } from "../../../../shared/components/Button";
+import { Help } from "../../../../shared/components/Help";
 
 import styles from "./index.module.scss";
 
@@ -20,11 +20,9 @@ const INITIAL_DATA: I.RegisterFormData = {
   preferences: "",
 };
 
-const Register = ({ }: I.RegisterProps) => {
+const Register = () => {
   const [data, setData] = useState(INITIAL_DATA);
-
   const navigate = useNavigate();
-
   const { currentUser, getUserId } = useStore();
 
   const updateFields = (fields: Partial<I.RegisterFormData>) => {
@@ -50,10 +48,9 @@ const Register = ({ }: I.RegisterProps) => {
       password: data.password,
     };
 
-    await apiService.register(userData)
-      .catch((error) => {
-        console.log(error);
-      });
+    await apiService.register(userData).catch((error) => {
+      console.log(error);
+    });
 
     await apiService
       .login(userData.username, userData.password)

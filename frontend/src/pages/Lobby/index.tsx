@@ -2,20 +2,36 @@ import cn from "classnames";
 import { Link } from "react-router-dom";
 
 import styles from "./index.module.scss";
-import LobbyPlayAdmin from "./components/LobbyPlayAdmin";
-import LobbyWaitAdmin from "./components/LobbyWaitAdmin";
-import LobbyWaitGuest from "./components/LobbyWaitGuest";
-import LobbyPlayGuest from "./components/LobbyPlayGuest";
 import { BackButton } from "../../shared/components/BackButton";
 
 import * as I from "./types/types";
 import { useStore } from "stores";
 import { observer } from "mobx-react";
+import { useEffect, useState } from "react";
+import { Loader } from "shared/components/Loader";
+import { LobbyWait } from "./components/LobbyWait";
+import { LobbyPlay } from "./components/LobbyPlay";
 
 export const Lobby = observer(function Lobby({ className }: I.LobbyProps) {
   const lobbyStyles = cn(styles.lobby, className);
 
-  const { currentUser, lobbyStore } = useStore();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { currentUser, lobbyStore, fetchLobbyData } = useStore();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      await fetchLobbyData();
+      setIsLoading(false);
+    };
+
+    if (isLoading) return;
+
+    fetchData();
+  }, []);
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className={lobbyStyles}>
@@ -23,16 +39,13 @@ export const Lobby = observer(function Lobby({ className }: I.LobbyProps) {
         <BackButton />
       </Link>
 
-      {currentUser.isHost ? (
-        lobbyStore.started ? (
-          <LobbyPlayAdmin giving={lobbyStore.givingName ? lobbyStore.givingName : ''} />
-        ) : (
-          <LobbyWaitAdmin />
-        )
-      ) : lobbyStore.started ? (
-        <LobbyPlayGuest giving={lobbyStore.givingName ? lobbyStore.givingName : ''} />
+      {lobbyStore.started ? (
+        <LobbyPlay
+          giving={lobbyStore.givingName ?? ""}
+          isAdmin={currentUser.isHost}
+        />
       ) : (
-        <LobbyWaitGuest />
+        <LobbyWait isAdmin={currentUser.isHost} />
       )}
     </div>
   );

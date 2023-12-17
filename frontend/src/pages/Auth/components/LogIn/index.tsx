@@ -2,16 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "stores";
 
-import Button from "shared/components/Button";
-import Header from "shared/components/Header";
-import Help from "shared/components/Help";
-import InputField from "shared/components/InputField";
+import { Button } from "shared/components/Button";
+import { Header } from "shared/components/Header";
+import { Help } from "shared/components/Help";
+import { InputField } from "shared/components/InputField";
 import { InputStyle } from "shared/components/InputField/types/types";
 import { apiService } from "api/apiService";
 
-import * as I from "../types/types";
-
-const LogIn = ({ }: I.LogInProps) => {
+const LogIn = () => {
   const [loginValue, setLoginValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [loginStyle, setLoginStyle] = useState<InputStyle>("");
@@ -33,9 +31,9 @@ const LogIn = ({ }: I.LogInProps) => {
 
   const onSubmit = async () => {
     if (loginValue && passwordValue) {
-      await apiService.login(loginValue, passwordValue)
+      await apiService.login(loginValue, passwordValue);
 
-      currentUser.setUserToken(localStorage.getItem('access_token'))
+      currentUser.setUserToken(localStorage.getItem("access_token"));
       currentUser.setUserId(getUserId());
 
       navigate("/");

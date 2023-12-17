@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./index.module.scss";
 import { BackButton } from "../../shared/components/BackButton";
-import Button from "./../../shared/components/Button";
-import InputField from "./../../shared/components/InputField";
+import { Button } from "./../../shared/components/Button";
+import { InputField } from "./../../shared/components/InputField";
 
 import * as I from "./types/types";
 import { useStore } from "../../stores";
@@ -59,7 +59,7 @@ export const CreateLobby = ({ className }: I.CreateLobbyProps) => {
 
     await apiService.createHost(hostData).then((res) => {
       currentUser.setUserIsHost(res.data.is_host);
-      setGuestId(res.data.id)
+      setGuestId(res.data.id);
     });
 
     navigate(`/lobby/${lobbyStore.code}}`);
