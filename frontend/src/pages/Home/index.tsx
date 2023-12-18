@@ -56,7 +56,7 @@ const Home = ({ className }: I.HomeProps) => {
         </div>
         
       </div>
-      {refresh_token && <Button label="выйти из аккаунта (должна быть красная типа danger)" className={styles.exitBtn} onClick={() => setIsOpened(true)} />}
+      {refresh_token && <Button label="выйти из аккаунта" buttonStyle="danger" className={styles.exitBtn} onClick={() => setIsOpened(true)} />}
       {isOpened && <ModalWindow setIsAgreed={onAgreed} setIsOpened={setIsOpened} />}
     </>
   );

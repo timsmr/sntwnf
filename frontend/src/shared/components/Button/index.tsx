@@ -7,8 +7,13 @@ export const Button = ({
   className,
   onClick,
   type = "button",
+  buttonStyle = "",
 }: I.ButtonProps) => {
-  const buttonStyles = cn(styles.button, className);
+  const buttonStyles = cn(
+    styles.button,
+    styles[`style_${buttonStyle}`],
+    className,
+  );
 
   return (
     <button type={type} onClick={onClick} className={buttonStyles}>

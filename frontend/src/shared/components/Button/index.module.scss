@@ -1,15 +1,43 @@
 @import "shared/ui/adaptive";
 
 .button {
-  font-size: 2.5rem;
+  font-size: get-mobile-unit(10);
   font-weight: 400;
-  padding: 1rem 4.5rem;
+  padding: get-mobile-unit(5) get-mobile-unit(14);
   background: #ffffff;
   color: #2f2828;
   border: none;
   border-radius: 20px;
   box-shadow: none;
   cursor: pointer;
+}
+
+.style_primary {
+  background-color: #525ec7;
+  color: #ffffff;
+}
+
+.style_info {
+  background-color: rgba(0, 117, 255, 0.2);
+  color: #0059ab;
+}
+
+.style_danger {
+  background-color: rgba(200, 21, 32, 0.3);
+  color: #c80024;
+}
+
+.style_shuffle {
+  background-color: rgba(203, 145, 214, 0.2);
+  color: #a971b7;
+}
+
+@include screen-m {
+  .button {
+    font-size: get-mobile-unit(20);
+    padding: get-mobile-unit(10) get-mobile-unit(20);
+    border-radius: get-mobile-unit(30);
+  }
 }
 
 @include screen-s {

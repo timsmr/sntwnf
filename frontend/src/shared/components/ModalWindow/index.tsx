@@ -9,8 +9,8 @@ export const ModalWindow = ({setIsAgreed, setIsOpened}: I.ModalWindowProps) => {
       <div className={styles.hint}>
         <p className={styles.info}>фо риал?!</p>
         <div>
-          <Button onClick={() => {setIsAgreed(true); setIsOpened(false)}} label="да" />
-          <Button onClick={() => {setIsAgreed(false); setIsOpened(false)}} label="нет" />
+          <Button onClick={() => {setIsAgreed(true); setIsOpened(false)}} className={styles.btnYes} label="да" buttonStyle="primary" />
+          <Button onClick={() => {setIsAgreed(false); setIsOpened(false)}} label="нет" buttonStyle="primary" />
         </div>
       </div>
     </div>
