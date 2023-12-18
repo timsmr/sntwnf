@@ -1,13 +1,27 @@
+@import "shared/ui/adaptive";
+
 .header {
-  margin-bottom: 2.3rem;
-  width: inherit;
+  margin-bottom: 2rem;
 }
 
 .children {
   width: inherit;
   display: inherit;
-  gap: 1.5rem;
   flex-direction: inherit;
   justify-content: inherit;
   align-items: inherit;
+}
+
+@include screen-m {
+  .header {
+    font-size: get-mobile-unit(60) !important;
+    margin-bottom: get-mobile-unit(30);
+  }
+}
+
+@include screen-s {
+  .header {
+    font-size: get-mobile-unit(40) !important;
+    margin-bottom: get-mobile-unit(30);
+  }
 }

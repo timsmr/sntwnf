@@ -1,10 +1,9 @@
-import React from "react";
-import { FormWrapper } from "shared/components/FormWrapper";
 import { InputField } from "shared/components/InputField";
 import { Textarea } from "shared/components/Textarea";
 import * as I from "../types/types";
 
 import styles from "./index.module.scss";
+import { Header } from "shared/components/Header";
 
 const PersonalData = ({
   name,
@@ -12,9 +11,10 @@ const PersonalData = ({
   updateFields,
 }: I.PersonalDataProps) => {
   return (
-    <FormWrapper title="Остался последний шаг: заполни свои данные, чтобы твоим друзьям было легче подобрать тебе подарок!">
+    <>
+      <Header className={styles.headerRegisterDetail} text="Остался последний шаг: заполни свои данные, чтобы твоим друзьям было легче подобрать тебе подарок!" />
       <InputField
-        className={styles.inputRegisterDetail}
+        className={styles.inputName}
         inputPlaceholder="Имя"
         value={name}
         onChange={(e) =>
@@ -23,14 +23,14 @@ const PersonalData = ({
         required
       />
       <Textarea
-        className={styles.textareaRegisterDetail}
+        className={styles.textarea}
         textareaPlaceholder="Подсказка для подарка..."
         value={preferences}
         onChange={(e) =>
           updateFields({ preferences: (e.target as HTMLButtonElement).value })
         }
       />
-    </FormWrapper>
+    </>
   );
 };
 

@@ -1,13 +1,14 @@
-import React from "react";
-
-import { FormWrapper } from "shared/components/FormWrapper";
 import { InputField } from "shared/components/InputField";
 import * as I from "../types/types";
+import styles from './index.module.scss';
+import { Header } from "shared/components/Header";
 
 const GeneralData = ({ login, password, updateFields }: I.GeneralDataProps) => {
   return (
-    <FormWrapper title="Регистрация">
+    <>
+      <Header className={styles.header} text="Регистрация" />
       <InputField
+        className={styles.input}
         inputPlaceholder="Логин"
         value={login}
         onChange={(e) =>
@@ -16,6 +17,7 @@ const GeneralData = ({ login, password, updateFields }: I.GeneralDataProps) => {
         required
       />
       <InputField
+        className={styles.input}
         inputPlaceholder="Пароль"
         inputType={"password"}
         value={password}
@@ -24,7 +26,7 @@ const GeneralData = ({ login, password, updateFields }: I.GeneralDataProps) => {
         }
         required
       />
-    </FormWrapper>
+    </>
   );
 };
 

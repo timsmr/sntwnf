@@ -1,45 +1,171 @@
-.form {
-  width: 100%;
-  display: flex;
-  gap: 3rem;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.headerRegisterDetail {
-  max-width: 75% !important;
-}
-
-.inputRegisterDetail {
-  width: 75% !important;
-}
-
-.textareaRegisterDetail {
-  width: 75% !important;
-  height: 15rem !important;
-}
-
-.buttonRegisterDetail {
-  margin-top: 3rem;
-}
+@import "shared/ui/adaptive";
 
 .steps {
   position: absolute;
-  font-size: 1.4rem;
+  font-size: 2rem;
   color: #ddd;
   font-weight: 700;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 2.5rem;
+  right: 2.5rem;
 }
 
-.buttonDiv {
+
+.form {
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  gap: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .buttonDiv {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+  
+  .button {
+    background-color: #525ec7;
+    color: #ffffff;
+  }
+  
+  .help {
+    margin-top: get-mobile-unit(3);
+  }
+  
+  .header {
+    margin-bottom: get-mobile-unit(10);
+  }
+  
+  .input {
+    margin-bottom: get-mobile-unit(6);
+  }
+  
+  .button {
+    margin-top: get-mobile-unit(5);
+    margin-bottom: get-mobile-unit(3);
+  }
+  
+  .help {
+    font-size: get-mobile-unit(6);
+  }
+  
+  .headerRegisterDetail {
+    max-width: 75%;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .inputName {
+    width: 75%;
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+  
+  .textarea {
+    width: 75%;
+    height: 15rem;
+    margin-bottom: 3rem;
+  }
 }
 
-.button {
-  background-color: #525ec7;
-  color: #ffffff;
+
+
+
+@include screen-m {
+  .steps {
+    font-size: get-mobile-unit(20);
+    top: get-mobile-unit(25);
+    right: get-mobile-unit(25);
+  }
+
+  .form {
+    .header {
+      font-size: get-mobile-unit(60);
+      margin-bottom: get-mobile-unit(30);
+    }
+    
+    .input {
+      font-size: get-mobile-unit(20);
+      padding: get-mobile-unit(10) get-mobile-unit(15);
+      margin-bottom: get-mobile-unit(15);
+      border-radius: get-mobile-unit(20);
+    }
+    
+    .button {
+      margin-top: get-mobile-unit(10);
+      margin-bottom: get-mobile-unit(10);
+    }
+    
+    .help {
+      font-size: get-mobile-unit(10);
+    }
+  
+    .headerRegisterDetail {
+      font-size: get-mobile-unit(20);
+      margin-bottom: get-mobile-unit(20);
+    }
+  
+    .inputName {
+      font-size: get-mobile-unit(15);
+    }
+    
+    .textarea {
+      font-size: get-mobile-unit(15);
+      height: get-mobile-unit(100);
+    }
+  }
+
+  
+}
+
+@include screen-s {
+
+  .steps {
+    font-size: get-mobile-unit(15);
+    top: get-mobile-unit(25);
+    right: get-mobile-unit(25);
+  }
+
+  .form {
+    .header {
+      font-size: get-mobile-unit(30);
+      margin-bottom: get-mobile-unit(30);
+    }
+    
+    .input {
+      font-size: get-mobile-unit(20);
+      padding: get-mobile-unit(10) get-mobile-unit(15);
+      margin-bottom: get-mobile-unit(15);
+      border-radius: get-mobile-unit(20);
+    }
+    
+    .button {
+      margin-top: get-mobile-unit(10);
+      margin-bottom: get-mobile-unit(10);
+    }
+    
+    .help {
+      font-size: get-mobile-unit(10);
+    }
+  
+    .headerRegisterDetail {
+      max-width: 85%;
+      font-size: get-mobile-unit(15);
+      margin-bottom: get-mobile-unit(20);
+    }
+  
+    .inputName {
+      width: 80%;
+      padding: get-mobile-unit(7) get-mobile-unit(10);
+      font-size: get-mobile-unit(15);
+      margin-bottom: get-mobile-unit(15);
+    }
+    
+    .textarea {
+      width: 80%;
+      padding: get-mobile-unit(7) get-mobile-unit(10);
+      font-size: get-mobile-unit(15);
+      height: get-mobile-unit(100);
+    }
+  }
 }

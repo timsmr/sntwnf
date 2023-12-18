@@ -52,7 +52,7 @@
 @include screen-s {
   .root {
     .header {
-      font-size: get-mobile-unit(60);
+      font-size: get-mobile-unit(30);
       margin-bottom: get-mobile-unit(30);
     }
 
@@ -65,11 +65,11 @@
 
     .button {
       margin-top: get-mobile-unit(10);
-      margin-bottom: get-mobile-unit(30);
+      margin-bottom: get-mobile-unit(10);
     }
 
     .help {
-      font-size: get-mobile-unit(15);
+      font-size: get-mobile-unit(10);
     }
   }
 }

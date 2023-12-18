@@ -84,15 +84,15 @@ const Register = () => {
             type="submit"
           />
         </div>
-      </form>
-      {isFirstStep && (
+        {isFirstStep && (
         <Help
-          className="mt-10"
+          className={styles.help}
           message="Есть аккаунт?"
           linkMessage="Тыкни на меня!"
           link="/auth/login"
         />
       )}
+      </form>
     </>
   );
 };
