@@ -24,7 +24,7 @@ export const Auth = observer(function Auth({ className }: I.AuthProps) {
   return (
     <div className={AuthStyles}>
       <Link to="/">
-        <BackButton />
+        <BackButton className={styles.backBtn} />
       </Link>
       {authType === "login" ? (
         <LogIn />

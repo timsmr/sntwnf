@@ -44,25 +44,25 @@ const LogIn = () => {
 
   return (
     <>
-      <Header className="mb-23" text="Вход" />
+      <Header className={styles.header} text="Вход" />
       <InputField
-        className="mb-15"
+        className={styles.input}
         inputPlaceholder="Логин"
         value={loginValue}
         isInvalidValue={isLoginInvalid}
         onChange={onChangeLoginInput}
       />
       <InputField
-        className="mb-15"
+        className={styles.input}
         inputPlaceholder="Пароль"
         inputType={"password"}
         value={passwordValue}
         isInvalidValue={isPasswordInvalid}
         onChange={onChangePasswordInput}
       />
-      <Button className={styles.button} label="Войти" onClick={onSubmit} />
+      <Button className={styles.button} buttonStyle="primary" label="Войти" onClick={onSubmit} />
       <Help
-        className="mt-10"
+        className={styles.help}
         message="Нет аккаунта?"
         linkMessage="Тыкни на меня!"
         link="/auth/register"

@@ -1,4 +1,64 @@
+@import "shared/ui/adaptive";
+
+.header {
+  margin-bottom: get-mobile-unit(10);
+}
+
+.input {
+  margin-bottom: get-mobile-unit(6);
+}
+
 .button {
-  background-color: #525ec7;
-  color: #ffffff;
+  margin-top: get-mobile-unit(5);
+  margin-bottom: get-mobile-unit(3);
+}
+
+.help {
+  font-size: get-mobile-unit(6);
+}
+
+@include screen-m {
+  .header {
+    font-size: get-mobile-unit(60) !important;
+    margin-bottom: get-mobile-unit(30);
+  }
+  
+  .input {
+    font-size: get-mobile-unit(20) !important;
+    padding: get-mobile-unit(10) get-mobile-unit(15) !important;
+    margin-bottom: get-mobile-unit(15);
+    border-radius: get-mobile-unit(20) !important;
+  }
+  
+  .button {
+    margin-top: get-mobile-unit(10);
+    margin-bottom: get-mobile-unit(10);
+  }
+  
+  .help {
+    font-size: get-mobile-unit(10) !important;
+  }
+}
+
+@include screen-s {
+  .header {
+    font-size: get-mobile-unit(60) !important;
+    margin-bottom: get-mobile-unit(30);
+  }
+  
+  .input {
+    font-size: get-mobile-unit(20) !important;
+    padding: get-mobile-unit(10) get-mobile-unit(15) !important;
+    margin-bottom: get-mobile-unit(15);
+    border-radius: get-mobile-unit(20) !important;
+  }
+  
+  .button {
+    margin-top: get-mobile-unit(10);
+    margin-bottom: get-mobile-unit(10);
+  }
+  
+  .help {
+    font-size: get-mobile-unit(10) !important;
+  }
 }
