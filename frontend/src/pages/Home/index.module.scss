@@ -8,7 +8,7 @@
 }
 
 .title {
-  font-size: 5rem;
+  font-size: get-mobile-unit(30);
   font-weight: 400;
   color: #ffffff;
   margin-bottom: 5.2rem;
@@ -21,23 +21,35 @@
 
 .exitBtn {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  font-size: get-mobile-unit(6) !important;
+  bottom: get-mobile-unit(10);
 }
 
 
 @include screen-s {
+  .home {
+    justify-content: space-between;
+  }
+
   .title {
-    font-size: get-mobile-unit(80);
-    line-height: get-mobile-unit(50);
+    font-size: get-mobile-unit(30);
+    // line-height: get-mobile-unit(50);
+    // text-align: center;
     margin-bottom: get-mobile-unit(40);
+  }
+
+  .exitBtn {
+    font-size: get-mobile-unit(10) !important;
   }
 }
 
 @include screen-m {
   .title {
-    text-align: center;
+    // text-align: center;
     font-size: get-mobile-unit(50);
-    line-height: get-mobile-unit(50);
+  }
+
+  .exitBtn {
+    font-size: get-mobile-unit(10) !important;
   }
 }

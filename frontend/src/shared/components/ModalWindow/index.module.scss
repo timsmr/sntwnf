@@ -1,34 +1,87 @@
+@import "shared/ui/adaptive";
+
 .hint_background {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba($color: #000000, $alpha: 0.1);
-    backdrop-filter: blur(1px);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: #000000, $alpha: 0.1);
+  backdrop-filter: blur(2px);
+}
+  
+.hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: get-mobile-unit(10) get-mobile-unit(20);
+  // width: 30rem;
+  // height: 15rem;
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+
+.info {
+  flex: 1;
+  margin-top: 0;
+  margin-bottom: get-mobile-unit(20);
+  padding: 0.5rem;
+  text-align: center;
+  font-size: get-mobile-unit(10);
+  font-weight: 400;
+  line-height: 1.3;
+  color: rgba(0, 0, 0, 0.7);
+  overflow: auto;
+}
+
+.btn {
+  font-size: get-mobile-unit(10);
+
+  &:first-child {
+    margin-right: get-mobile-unit(15);
+  }
+}
+
+@include screen-m {
+  .hint {
+    padding: get-mobile-unit(10) get-mobile-unit(20);
   }
   
-  .hint {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3rem;
-    // width: 30rem;
-    // height: 15rem;
-    background-color: #ffffff;
-    border-radius: 15px;
-  }
-
   .info {
-    flex: 1;
-    margin-top: 0;
-    margin-bottom: 2.5rem;
-    padding: 0.5rem;
-    text-align: center;
-    font-size: 2.2rem;
-    font-weight: 400;
-    line-height: 1.3;
-    color: rgba(0, 0, 0, 0.7);
-    overflow: auto;
+    margin-bottom: get-mobile-unit(20);
+    font-size: get-mobile-unit(15);
+    
+  }
+  
+  .btn {
+    font-size: get-mobile-unit(15);
+    padding: get-mobile-unit(5) get-mobile-unit(16);
+  
+    &:first-child {
+      margin-right: get-mobile-unit(15);
+    }
+  }
+}
+
+@include screen-s {
+
+  .hint {
+    padding: get-mobile-unit(10) get-mobile-unit(20);
+  }
+  
+  .info {
+    margin-bottom: get-mobile-unit(20);
+    font-size: get-mobile-unit(15);
+    
+  }
+  
+  .btn {
+    font-size: get-mobile-unit(15);
+    padding: get-mobile-unit(5) get-mobile-unit(16);
+  
+    &:first-child {
+      margin-right: get-mobile-unit(15);
+    }
+  }
 }
