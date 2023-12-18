@@ -43,7 +43,7 @@ const LogIn = () => {
   };
 
   return (
-    <>
+    <div className={styles.root}>
       <Header className={styles.header} text="Вход" />
       <InputField
         className={styles.input}
@@ -60,14 +60,19 @@ const LogIn = () => {
         isInvalidValue={isPasswordInvalid}
         onChange={onChangePasswordInput}
       />
-      <Button className={styles.button} buttonStyle="primary" label="Войти" onClick={onSubmit} />
+      <Button
+        className={styles.button}
+        buttonStyle="primary"
+        label="Войти"
+        onClick={onSubmit}
+      />
       <Help
         className={styles.help}
         message="Нет аккаунта?"
         linkMessage="Тыкни на меня!"
         link="/auth/register"
       />
-    </>
+    </div>
   );
 };
 

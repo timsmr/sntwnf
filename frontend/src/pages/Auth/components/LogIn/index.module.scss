@@ -1,64 +1,75 @@
 @import "shared/ui/adaptive";
 
-.header {
-  margin-bottom: get-mobile-unit(10);
-}
+.root {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 
-.input {
-  margin-bottom: get-mobile-unit(6);
-}
+  .header {
+    font-size: 4.5rem;
+    margin-bottom: 2.4rem;
+  }
 
-.button {
-  margin-top: get-mobile-unit(5);
-  margin-bottom: get-mobile-unit(3);
-}
+  .input {
+    margin-bottom: 1.4rem;
+  }
 
-.help {
-  font-size: get-mobile-unit(6);
+  .button {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .help {
+    font-size: 1.5rem;
+  }
 }
 
 @include screen-m {
-  .header {
-    font-size: get-mobile-unit(60) !important;
-    margin-bottom: get-mobile-unit(30);
-  }
-  
-  .input {
-    font-size: get-mobile-unit(20) !important;
-    padding: get-mobile-unit(10) get-mobile-unit(15) !important;
-    margin-bottom: get-mobile-unit(15);
-    border-radius: get-mobile-unit(20) !important;
-  }
-  
-  .button {
-    margin-top: get-mobile-unit(10);
-    margin-bottom: get-mobile-unit(10);
-  }
-  
-  .help {
-    font-size: get-mobile-unit(10) !important;
+  .root {
+    .header {
+      font-size: get-mobile-unit(60);
+      margin-bottom: get-mobile-unit(30);
+    }
+
+    .input {
+      font-size: get-mobile-unit(20);
+      padding: get-mobile-unit(10) get-mobile-unit(15);
+      margin-bottom: get-mobile-unit(15);
+      border-radius: get-mobile-unit(20);
+    }
+
+    .button {
+      margin-top: get-mobile-unit(10);
+      margin-bottom: get-mobile-unit(10);
+    }
+
+    .help {
+      font-size: get-mobile-unit(10);
+    }
   }
 }
 
 @include screen-s {
-  .header {
-    font-size: get-mobile-unit(60) !important;
-    margin-bottom: get-mobile-unit(30);
-  }
-  
-  .input {
-    font-size: get-mobile-unit(20) !important;
-    padding: get-mobile-unit(10) get-mobile-unit(15) !important;
-    margin-bottom: get-mobile-unit(15);
-    border-radius: get-mobile-unit(20) !important;
-  }
-  
-  .button {
-    margin-top: get-mobile-unit(10);
-    margin-bottom: get-mobile-unit(10);
-  }
-  
-  .help {
-    font-size: get-mobile-unit(10) !important;
+  .root {
+    .header {
+      font-size: get-mobile-unit(60);
+      margin-bottom: get-mobile-unit(30);
+    }
+
+    .input {
+      font-size: get-mobile-unit(20);
+      padding: get-mobile-unit(10) get-mobile-unit(15);
+      margin-bottom: get-mobile-unit(15);
+      border-radius: get-mobile-unit(20);
+    }
+
+    .button {
+      margin-top: get-mobile-unit(10);
+      margin-bottom: get-mobile-unit(30);
+    }
+
+    .help {
+      font-size: get-mobile-unit(15);
+    }
   }
 }

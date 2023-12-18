@@ -1,48 +1,30 @@
 @import "shared/ui/adaptive";
 
 .auth {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100rem;
-    height: 65rem;
-    background-color: #ffffff;
-    border-radius: 15px;
-    overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100rem;
+  height: 65rem;
+  background-color: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 @include screen-m {
-    .auth {
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
-    }
-
-    .backBtn {
-        margin-top: get-mobile-unit(13);
-        margin-left: get-mobile-unit(13);
-        width: get-mobile-unit(13) !important;
-        height: get-mobile-unit(13) !important;
-        border-top: get-mobile-unit(5) solid rgba(0, 0, 0, 0.7);
-        border-left: get-mobile-unit(5) solid rgba(0, 0, 0, 0.7);
-    }
+  .auth {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
 }
 
 @include screen-s {
-    .auth {
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
-    }
-
-    .backBtn {
-        margin-top: get-mobile-unit(20);
-        margin-left: get-mobile-unit(13);
-        width: get-mobile-unit(13) !important;
-        height: get-mobile-unit(13) !important;
-        border-top: get-mobile-unit(5) solid rgba(0, 0, 0, 0.7);
-        border-left: get-mobile-unit(5) solid rgba(0, 0, 0, 0.7);
-    }
+  .auth {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
 }
