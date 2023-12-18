@@ -65,23 +65,23 @@ class LobbyStore {
 
   clear = () => {
     this.code = null;
-    localStorage.removeItem("lobbyCode")
+    localStorage.removeItem("lobbyCode");
 
     this.name = null;
-    localStorage.removeItem("lobbyName")
+    localStorage.removeItem("lobbyName");
 
     this.event_date = null;
-    localStorage.removeItem("lobbyEventDate")
+    localStorage.removeItem("lobbyEventDate");
 
     this.started = null;
-    localStorage.removeItem("lobbyStarted")
+    localStorage.removeItem("lobbyStarted");
 
     this.giving_to = null;
-    localStorage.removeItem("givingTo")
+    localStorage.removeItem("givingTo");
 
     this.preferences = null;
-    localStorage.removeItem("preferences")
-  }
+    localStorage.removeItem("preferences");
+  };
 }
 
 export { LobbyStore };

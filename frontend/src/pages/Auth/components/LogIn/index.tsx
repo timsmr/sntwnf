@@ -8,7 +8,7 @@ import { Help } from "shared/components/Help";
 import { InputField } from "shared/components/InputField";
 import { apiService } from "api/apiService";
 
-const LogIn = () => {
+export const LogIn = () => {
   const [loginValue, setLoginValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [isLoginInvalid, setIsLoginInvalid] = useState(false);
@@ -75,5 +75,3 @@ const LogIn = () => {
     </div>
   );
 };
-
-export default LogIn;

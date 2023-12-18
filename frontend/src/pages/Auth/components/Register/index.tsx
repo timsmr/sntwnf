@@ -9,8 +9,8 @@ import styles from "./index.module.scss";
 
 import * as I from "../types/types";
 import { useMultistepForm } from "shared/hooks/useMultistepForm";
-import PersonalData from "./PersonalData";
-import GeneralData from "./GeneralData";
+import { PersonalData } from "./PersonalData";
+import { GeneralData } from "./GeneralData";
 import { apiService } from "api/apiService";
 
 const INITIAL_DATA: I.RegisterFormData = {
@@ -20,7 +20,7 @@ const INITIAL_DATA: I.RegisterFormData = {
   preferences: "",
 };
 
-const Register = () => {
+export const Register = () => {
   const [data, setData] = useState(INITIAL_DATA);
   const navigate = useNavigate();
   const { currentUser, getUserId } = useStore();
@@ -85,16 +85,14 @@ const Register = () => {
           />
         </div>
         {isFirstStep && (
-        <Help
-          className={styles.help}
-          message="Есть аккаунт?"
-          linkMessage="Тыкни на меня!"
-          link="/auth/login"
-        />
-      )}
+          <Help
+            className={styles.help}
+            message="Есть аккаунт?"
+            linkMessage="Тыкни на меня!"
+            link="/auth/login"
+          />
+        )}
       </form>
     </>
   );
 };
-
-export default Register;

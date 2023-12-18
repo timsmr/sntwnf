@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "./scss/app.scss";
-import Home from "./pages/Home";
+import { Home } from "./pages/Home";
 import { Auth } from "./pages/Auth";
 import { NotFound } from "./pages/NotFound";
 import { JoinLobby } from "./pages/JoinLobby";

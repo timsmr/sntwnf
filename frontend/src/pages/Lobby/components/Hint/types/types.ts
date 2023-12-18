@@ -1,6 +1,4 @@
-import React from "react";
-
 export type HintProps = {
-    message: string,
-    handleButtonClick: () => void;
+  message: string;
+  handleButtonClick: () => void;
 };

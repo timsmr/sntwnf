@@ -1,20 +1,20 @@
-import { makeObservable, observable, action } from 'mobx';
+import { makeObservable, observable, action } from "mobx";
 
 class AuthStore {
-    authPath: 'login' | 'register';
+  authPath: "login" | "register";
 
-    constructor() {
-        this.authPath = 'login';
+  constructor() {
+    this.authPath = "login";
 
-        makeObservable(this, {
-            authPath: observable,
-            changePath: action,
-        });
-    }
+    makeObservable(this, {
+      authPath: observable,
+      changePath: action,
+    });
+  }
 
-    changePath = (path: 'login' | 'register',) => {
-        this.authPath = path;
-    }
+  changePath = (path: "login" | "register") => {
+    this.authPath = path;
+  };
 }
 
 export { AuthStore };

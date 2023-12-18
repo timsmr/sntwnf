@@ -1,20 +1,20 @@
-import { makeObservable, observable, action } from 'mobx';
+import { makeObservable, observable, action } from "mobx";
 
 class PopupStore {
-    isOpened: boolean;
+  isOpened: boolean;
 
-    constructor() {
-        this.isOpened = false;
+  constructor() {
+    this.isOpened = false;
 
-        makeObservable(this, {
-            isOpened: observable,
-            changeValue: action,
-        });
-    }
+    makeObservable(this, {
+      isOpened: observable,
+      changeValue: action,
+    });
+  }
 
-    changeValue = () => {
-        this.isOpened = !this.isOpened;
-    }
+  changeValue = () => {
+    this.isOpened = !this.isOpened;
+  };
 }
 
 export { PopupStore };

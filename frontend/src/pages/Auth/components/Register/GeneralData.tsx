@@ -1,9 +1,13 @@
 import { InputField } from "shared/components/InputField";
 import * as I from "../types/types";
-import styles from './index.module.scss';
+import styles from "./index.module.scss";
 import { Header } from "shared/components/Header";
 
-const GeneralData = ({ login, password, updateFields }: I.GeneralDataProps) => {
+export const GeneralData = ({
+  login,
+  password,
+  updateFields,
+}: I.GeneralDataProps) => {
   return (
     <>
       <Header className={styles.header} text="Регистрация" />
@@ -29,5 +33,3 @@ const GeneralData = ({ login, password, updateFields }: I.GeneralDataProps) => {
     </>
   );
 };
-
-export default GeneralData;

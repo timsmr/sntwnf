@@ -44,12 +44,9 @@ class ApiService {
 
           if (refreshToken) {
             const tokenParts = JSON.parse(atob(refreshToken.split(".")[1]));
-            console.log(tokenParts)
             // exp date in token is expressed in seconds, while now() returns milliseconds:
             const now = Math.ceil(Date.now() / 1000);
 
-            console.log('puk', now)
-            
             if (tokenParts.exp > now) {
               return this.axiosInstance
                 .post("/token/refresh/", {
@@ -122,26 +119,24 @@ class ApiService {
       });
   };
 
-  public logout = (refresh_token:string) => {
+  public logout = (refresh_token: string) => {
     return this.axiosInstance
-    .post(`user/logout/blacklist/`, {
-      refresh_token: refresh_token
-    })
-    .then((res) => {
-      localStorage.clear()
-      window.location.href='/'
-    });
-  }
+      .post(`user/logout/blacklist/`, {
+        refresh_token: refresh_token,
+      })
+      .then((res) => {
+        localStorage.clear();
+        window.location.href = "/";
+      });
+  };
 
   getUserId = (token: string) => {
     if (!token) return;
-    return JSON.parse(atob(token!.split(".")[1]))[
-      "user_id"
-    ];
+    return JSON.parse(atob(token!.split(".")[1]))["user_id"];
   };
 
   public checkIfLobbyExists = (codeValue: string) => {
-    return this.axiosInstance(`lobby/${codeValue}`)
+    return this.axiosInstance(`lobby/${codeValue}`);
   };
 
   public register = (userInfo: T.UserInfo) => {
@@ -153,8 +148,8 @@ class ApiService {
   };
 
   public getLobby = (codeLobby: string | null) => {
-    return this.axiosInstance(`/lobby/${codeLobby}/`)
-  }
+    return this.axiosInstance(`/lobby/${codeLobby}/`);
+  };
 
   public createHost = (data: T.HostInfo) => {
     return this.axiosInstance.post(`/guest/`, { ...data });

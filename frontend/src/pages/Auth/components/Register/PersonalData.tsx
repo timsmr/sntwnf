@@ -5,14 +5,17 @@ import * as I from "../types/types";
 import styles from "./index.module.scss";
 import { Header } from "shared/components/Header";
 
-const PersonalData = ({
+export const PersonalData = ({
   name,
   preferences,
   updateFields,
 }: I.PersonalDataProps) => {
   return (
     <>
-      <Header className={styles.headerRegisterDetail} text="Остался последний шаг: заполни свои данные, чтобы твоим друзьям было легче подобрать тебе подарок!" />
+      <Header
+        className={styles.headerRegisterDetail}
+        text="Остался последний шаг: заполни свои данные, чтобы твоим друзьям было легче подобрать тебе подарок!"
+      />
       <InputField
         className={styles.inputName}
         inputPlaceholder="Имя"
@@ -33,5 +36,3 @@ const PersonalData = ({
     </>
   );
 };
-
-export default PersonalData;

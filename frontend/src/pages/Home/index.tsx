@@ -7,7 +7,7 @@ import { apiService } from "api/apiService";
 import { ModalWindow } from "shared/components/ModalWindow";
 import { useState } from "react";
 
-const Home = () => {
+export const Home = observer(() => {
   const { currentUser } = useStore();
 
   const [isOpened, setIsOpened] = useState(false);
@@ -64,6 +64,4 @@ const Home = () => {
       )}
     </>
   );
-};
-
-export default observer(Home);
+});

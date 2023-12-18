@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { observer } from "mobx-react";
-import LogIn from "./components/LogIn";
-import Register from "./components/Register";
+import { LogIn } from "./components/LogIn";
+import { Register } from "./components/Register";
 import styles from "./index.module.scss";
 import { BackButton } from "shared/components/BackButton";
 import { Link, useParams } from "react-router-dom";
