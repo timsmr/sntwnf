@@ -1,7 +1,3 @@
-import React from "react";
-
-export type CreateLobbyProps = React.HTMLAttributes<HTMLDivElement> & {};
-
 export type CreateFormData = {
   name: string;
   date: string;

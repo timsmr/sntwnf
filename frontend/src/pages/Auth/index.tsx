@@ -1,17 +1,13 @@
 import { useEffect } from "react";
-import cn from "classnames";
 import { observer } from "mobx-react";
 import LogIn from "./components/LogIn";
 import Register from "./components/Register";
 import styles from "./index.module.scss";
 import { BackButton } from "shared/components/BackButton";
 import { Link, useParams } from "react-router-dom";
-import * as I from "./types/types";
 import { useStore } from "stores";
 
-export const Auth = observer(function Auth({ className }: I.AuthProps) {
-  const authStyles = cn(styles.auth, className);
-
+export const Auth = observer(() => {
   const { authType } = useParams();
   const { authStore } = useStore();
 
@@ -22,7 +18,7 @@ export const Auth = observer(function Auth({ className }: I.AuthProps) {
   }, [authType, authStore]);
 
   return (
-    <div className={authStyles}>
+    <div className={styles.auth}>
       <Link to="/">
         <BackButton className={styles.backBtn} />
       </Link>

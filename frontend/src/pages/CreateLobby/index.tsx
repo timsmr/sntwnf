@@ -1,5 +1,4 @@
 import { FormEvent, useState } from "react";
-import cn from "classnames";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.scss";
@@ -16,9 +15,7 @@ const INITIAL_DATA: I.CreateFormData = {
   date: "",
 };
 
-export const CreateLobby = ({ className }: I.CreateLobbyProps) => {
-  const authStyles = cn(styles.auth, className);
-
+export const CreateLobby = () => {
   const [data, setData] = useState(INITIAL_DATA);
 
   const updateFields = (fields: Partial<I.CreateFormData>) => {
@@ -64,7 +61,7 @@ export const CreateLobby = ({ className }: I.CreateLobbyProps) => {
   };
 
   return (
-    <div className={authStyles}>
+    <div className={styles.auth}>
       <Link to="/">
         <BackButton />
       </Link>

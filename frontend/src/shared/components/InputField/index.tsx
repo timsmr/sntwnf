@@ -1,7 +1,6 @@
 import styles from "./index.module.scss";
 import cn from "classnames";
 import * as I from "./types/types";
-import { useState } from "react";
 
 export const InputField = ({
   inputType = "text",
@@ -13,10 +12,9 @@ export const InputField = ({
   className,
   required,
 }: I.InputFieldProps) => {
-  const [isInvalid, setIsInvalid] = useState(!!isInvalidValue);
   const inputStyles = cn(
     styles.inputField,
-    isInvalid && styles.warning,
+    isInvalidValue && styles.warning,
     className
   );
 
@@ -29,7 +27,6 @@ export const InputField = ({
       placeholder={inputPlaceholder}
       maxLength={inputMaxLength}
       required={required}
-      onInvalid={() => setIsInvalid(true)}
     />
   );
 };
