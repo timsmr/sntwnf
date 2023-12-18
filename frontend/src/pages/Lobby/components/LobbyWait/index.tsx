@@ -21,15 +21,15 @@ export const LobbyWait = ({ isAdmin }: T.LobbyWaitProps) => {
   };
 
   return (
-    <>
+    <div className={styles.root}>
       <Header
-        className="mb-100"
+        className={styles.header}
         text={lobbyStore.code ?? ""}
         headerStyle="bold"
       />
       {!isAdmin && (
         <>
-          <Header className="mb-100" text="Ждем начала игры" />
+          <Header className={styles.header} text="Ждем начала игры" />
           <Loader />
         </>
       )}
@@ -40,9 +40,9 @@ export const LobbyWait = ({ isAdmin }: T.LobbyWaitProps) => {
             className={styles.button}
             onClick={onClickStart}
           />
-          <Help className={styles.button} message="Все зашли? Нажми начать!" />
+          <Help className={styles.help} message="Все зашли? Нажми начать!" />
         </>
       )}
-    </>
+    </div>
   );
 };

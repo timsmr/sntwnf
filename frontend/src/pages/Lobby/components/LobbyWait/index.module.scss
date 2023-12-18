@@ -1,5 +1,58 @@
-.button {
-  background-color: #525ec7;
-  color: #ffffff;
-  margin-top: 1rem;
+@import "shared/ui/adaptive";
+
+.root {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  .header {
+    margin-bottom: 10rem;
+  }
+
+  .button {
+    background-color: #525ec7;
+    color: #ffffff;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .help {
+    font-size: 2rem;
+  }
+}
+
+@include screen-m {
+  .root {
+    .header {
+      font-size: get-mobile-unit(40);
+      margin-bottom: get-mobile-unit(30);
+    }
+
+    .button {
+      margin-top: get-mobile-unit(10);
+      margin-bottom: get-mobile-unit(20);
+    }
+
+    .help {
+      font-size: get-mobile-unit(15);
+    }
+  }
+}
+
+@include screen-s {
+  .root {
+    .header {
+      font-size: get-mobile-unit(30);
+      margin-bottom: get-mobile-unit(30);
+    }
+
+    .button {
+      margin-top: get-mobile-unit(10);
+      margin-bottom: get-mobile-unit(20);
+    }
+
+    .help {
+      font-size: get-mobile-unit(15);
+    }
+  }
 }

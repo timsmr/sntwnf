@@ -44,10 +44,10 @@ export const LobbyPlay = observer(({ giving, isAdmin }: T.LobbyPlayProps) => {
   };
 
   return (
-    <>
-      <Header text={lobbyStore.code ?? ""} headerStyle="code" />
-      <Header text="Ты даришь подарок игроку" />
-      <Header className="mb-23" text={giving} headerStyle="italic" />
+    <div className={styles.root}>
+      <Header className={styles.header} text={lobbyStore.code ?? ""} />
+      <Header className={styles.header} text="Ты даришь подарок игроку" />
+      <Header className={styles.header} text={giving} headerStyle="italic" />
       {lobbyStore.preferences && (
         <Button
           onClick={popupStore.changeValue}
@@ -69,9 +69,9 @@ export const LobbyPlay = observer(({ giving, isAdmin }: T.LobbyPlayProps) => {
             className={styles.button}
             onClick={onClickStart}
           />
-          <Help className="mt-10" message="Появились новые гости?" />
+          <Help className={styles.help} message="Появились новые гости?" />
         </>
       )}
-    </>
+    </div>
   );
 });
