@@ -67,7 +67,7 @@ export const JoinLobby = ({ className }: I.JoinLobbyProps) => {
   return (
     <div className={AuthStyles}>
       <Link to="/">
-        <BackButton className={styles.backButton} />
+        <BackButton />
       </Link>
       <Header className={styles.title} text="Код лобби" />
       <InputField

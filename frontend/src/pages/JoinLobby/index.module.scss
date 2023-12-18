@@ -26,20 +26,39 @@
 }
 
 @include screen-s {
-  .title {
-    margin-bottom: get-mobile-unit(20);
-  }
-
-  .backButton {
-    width: get-mobile-unit(15);
-    height: get-mobile-unit(15);
-    top: get-mobile-unit(15);
-    left: get-mobile-unit(15);
-    border-radius: get-mobile-unit(5);
-  }
-
   .auth {
-    width: get-mobile-unit(290);
-    height: get-mobile-unit(500);
+    width: 100%;
+    height: 100%;
+
+    .title {
+      margin-bottom: get-mobile-unit(20);
+      font-size: get-mobile-unit(33);
+    }
+
+    .input {
+      font-size: get-mobile-unit(20);
+      padding: get-mobile-unit(10) get-mobile-unit(15);
+      margin-bottom: get-mobile-unit(40);
+      border-radius: get-mobile-unit(20);
+    }
+  }
+}
+
+@include screen-m {
+  .auth {
+    width: 100%;
+    height: 100%;
+
+    .title {
+      margin-bottom: get-mobile-unit(50);
+      font-size: get-mobile-unit(40);
+    }
+
+    .input {
+      font-size: get-mobile-unit(20);
+      padding: get-mobile-unit(10) get-mobile-unit(15);
+      margin-bottom: get-mobile-unit(40);
+      border-radius: get-mobile-unit(20);
+    }
   }
 }
