@@ -1,6 +1,6 @@
 import { apiService } from "api/apiService";
 import { observer } from "mobx-react";
-import { useRef } from "react";
+import { useState } from "react";
 import { Button } from "shared/components/Button";
 import { Header } from "shared/components/Header";
 import { Help } from "shared/components/Help";
@@ -11,8 +11,8 @@ import styles from "./index.module.scss";
 
 export const LobbyPlay = observer(({ giving, isAdmin }: T.LobbyPlayProps) => {
   const { popupStore, lobbyStore } = useStore();
-  const givingToIdRef = useRef<null | number>(null);
-  const newGivingToRef = useRef<null | number>(null);
+  const [givingToId, setGivingToId] = useState<null | number>(null);
+  const [newGivingTo, setNewGivingTo] = useState<null | number>(null);
 
   const onClickStart = async () => {
     if (!lobbyStore.code) return;
@@ -28,16 +28,16 @@ export const LobbyPlay = observer(({ giving, isAdmin }: T.LobbyPlayProps) => {
     if (!guestId) return;
 
     await apiService.getGuest(guestId).then((res) => {
-      givingToIdRef.current = res.data["giving_to"];
+      setGivingToId(res.data["giving_to"]);
     });
 
-    await apiService.getGuest(givingToIdRef.current).then((res) => {
-      newGivingToRef.current = res.data["user"];
+    await apiService.getGuest(givingToId).then((res) => {
+      setNewGivingTo(res.data["user"]);
     });
 
-    if (!newGivingToRef.current) return;
+    if (!newGivingTo) return;
 
-    await apiService.getUser(newGivingToRef.current).then((res) => {
+    await apiService.getUser(newGivingTo).then((res) => {
       lobbyStore.setGivingTo(res.name);
       lobbyStore.setPref(res.preferences);
     });

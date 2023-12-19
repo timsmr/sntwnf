@@ -7,9 +7,10 @@ import { Button } from "shared/components/Button";
 import { Header } from "shared/components/Header";
 import { InputField } from "shared/components/InputField";
 import { apiService } from "api/apiService";
+import { observer } from "mobx-react";
 
-export const JoinLobby = () => {
-  const { currentUser, lobbyStore, setGuestId, getGivingToGuest } = useStore();
+export const JoinLobby = observer(() => {
+  const { currentUser, lobbyStore, setGuestId, getGivingToGuest, guestId } = useStore();
 
   const [codeValue, setCodeValue] = useState("");
   const [isCodeInvalid, setIsCodeInvalid] = useState(false);
@@ -44,8 +45,8 @@ export const JoinLobby = () => {
           );
           
           if (ept) {
-            currentUser.setUserIsHost(ept.is_host)
             setGuestId(ept.id);
+            currentUser.setUserIsHost(ept.is_host);
           } else {
             const guestInfo = {
               lobby: codeValue,
@@ -88,4 +89,4 @@ export const JoinLobby = () => {
       />
     </div>
   );
-};
+});

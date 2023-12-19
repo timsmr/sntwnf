@@ -17,7 +17,14 @@ export const Lobby = observer(function Lobby({ className }: I.LobbyProps) {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const { currentUser, lobbyStore, fetchLobbyData } = useStore();
+  const { currentUser, lobbyStore, fetchLobbyData, guestId} = useStore();
+
+  const cleanLobbyData = () => {
+    lobbyStore.clear()
+    localStorage.removeItem('guest_id')
+    localStorage.removeItem('givingTo')
+    localStorage.removeItem('givingName')
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,13 +36,13 @@ export const Lobby = observer(function Lobby({ className }: I.LobbyProps) {
     if (isLoading) return;
 
     fetchData();
-  }, []);
-
+  }, [guestId]);
+  
   if (isLoading) return <Loader />;
 
   return (
     <div className={lobbyStyles}>
-      <Link to="/" onClick={() => lobbyStore.clear()}>
+      <Link to="/" onClick={cleanLobbyData}>
         <BackButton />
       </Link>
 
