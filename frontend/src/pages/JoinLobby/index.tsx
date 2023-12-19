@@ -33,7 +33,7 @@ export const JoinLobby = () => {
           setIsCodeInvalid(true);
           return;
         }
-
+        
         lobbyStore.setLobbyCode(res.data.code);
         lobbyStore.setLobbyName(res.data.name);
         lobbyStore.setLobbyEventDate(res.data.event_date);
@@ -42,7 +42,9 @@ export const JoinLobby = () => {
           const ept = res.data.find(
             (item: any) => item.user === currentUser.userId
           );
+          
           if (ept) {
+            currentUser.setUserIsHost(ept.is_host)
             setGuestId(ept.id);
           } else {
             const guestInfo = {
