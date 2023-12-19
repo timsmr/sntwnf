@@ -36,6 +36,7 @@ export const LobbyWait = ({ isAdmin }: T.LobbyWaitProps) => {
       {isAdmin && (
         <>
           <Button
+            buttonStyle="primary"
             label="Начать!"
             className={styles.button}
             onClick={onClickStart}

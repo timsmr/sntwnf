@@ -1,12 +1,17 @@
+@import "shared/ui/adaptive";
+
 .hint_background {
-  position: absolute;
+  align-items: center;
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  background-color: rgba(0,0,0,.1);
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba($color: #000000, $alpha: 0.1);
-  backdrop-filter: blur(1px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .hint {
@@ -46,7 +51,28 @@
   }
 }
 
-.button {
-  background-color: rgba(0, 117, 255, 0.2);
-  color: #0059ab;
+@include screen-m {
+  .hint {
+    width: get-mobile-unit(400);
+    height: get-mobile-unit(240);
+  }
+
+  .info {
+    font-size: get-mobile-unit(19);
+  }
+}
+
+@include screen-s {
+  .hint {
+    width: get-mobile-unit(250);
+    height: get-mobile-unit(240);
+  }
+
+  .info {
+    font-size: get-mobile-unit(15);
+  }
+
+  .button {
+    font-size: get-mobile-unit(15);
+  }
 }

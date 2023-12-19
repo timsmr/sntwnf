@@ -50,6 +50,7 @@ export const LobbyPlay = observer(({ giving, isAdmin }: T.LobbyPlayProps) => {
       <Header className={styles.header} text={giving} headerStyle="italic" />
       {lobbyStore.preferences && (
         <Button
+          buttonStyle="info"
           onClick={popupStore.changeValue}
           className={styles.button}
           label="Подсказка"
@@ -65,6 +66,7 @@ export const LobbyPlay = observer(({ giving, isAdmin }: T.LobbyPlayProps) => {
       {isAdmin && (
         <>
           <Button
+            buttonStyle="shuffle"
             label="Перемешать"
             className={styles.button}
             onClick={onClickStart}

@@ -86,7 +86,7 @@ export const CreateLobby = () => {
           inputType="date"
           inputPlaceholder="dd/mm/yyyy"
         />
-        <Button label="Создать" className={styles.button} type="submit" />
+        <Button buttonStyle="primary" label="Создать" className={styles.button} type="submit" />
       </form>
     </div>
   );

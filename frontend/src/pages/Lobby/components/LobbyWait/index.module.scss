@@ -10,8 +10,8 @@
   }
 
   .button {
-    background-color: #525ec7;
-    color: #ffffff;
+    padding: 2rem 7rem;
+    font-size: 3rem;
     margin-top: 1rem;
     margin-bottom: 2rem;
   }
@@ -29,6 +29,9 @@
     }
 
     .button {
+      padding: get-mobile-unit(15) get-mobile-unit(40);
+      font-size: get-mobile-unit(20);
+      border-radius: get-mobile-unit(14);
       margin-top: get-mobile-unit(10);
       margin-bottom: get-mobile-unit(20);
     }
@@ -47,7 +50,10 @@
     }
 
     .button {
-      margin-top: get-mobile-unit(10);
+      padding: get-mobile-unit(15) get-mobile-unit(40);
+      font-size: get-mobile-unit(17);
+      border-radius: get-mobile-unit(13);
+      margin-top: get-mobile-unit(100);
       margin-bottom: get-mobile-unit(20);
     }
 
