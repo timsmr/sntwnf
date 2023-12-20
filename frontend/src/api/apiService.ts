@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestHeaders } from "axios";
 import * as T from "./types/types";
 
-const baseUrl = "http://santa_backend:8000/api/";
+const baseUrl = "http://90.156.226.110:8000/api/";
 
 class ApiService {
   private axiosInstance!: AxiosInstance;
