@@ -1,6 +1,5 @@
 import { apiService } from "api/apiService";
 import { observer } from "mobx-react";
-import { useState } from "react";
 import { Button } from "shared/components/Button";
 import { Header } from "shared/components/Header";
 import { Help } from "shared/components/Help";
@@ -10,37 +9,28 @@ import { Hint } from "../Hint";
 import styles from "./index.module.scss";
 
 export const LobbyPlay = observer(({ giving, isAdmin }: T.LobbyPlayProps) => {
-  const { popupStore, lobbyStore } = useStore();
-  const [givingToId, setGivingToId] = useState<null | number>(null);
-  const [newGivingTo, setNewGivingTo] = useState<null | number>(null);
+  const { popupStore, lobbyStore, guestId } = useStore();
 
-  const onClickStart = async () => {
+  const onShuffleClick = async () => {
     if (!lobbyStore.code) return;
 
-    await apiService.startGame(lobbyStore.code).then(() => {
-      lobbyStore.setLobbyStarted(true);
-    });
-    const guestIdFromStorage = localStorage.getItem("guest_id");
-
-    if (!guestIdFromStorage) return;
-    const guestId = JSON.parse(guestIdFromStorage);
+    await apiService.shuffle(lobbyStore.code)
 
     if (!guestId) return;
 
-    await apiService.getGuest(guestId).then((res) => {
-      setGivingToId(res.data["giving_to"]);
-    });
+    await apiService.getGuest(Number(guestId)).then(async (res) => {
+      if (!res.data['giving_to']) return;
 
-    await apiService.getGuest(givingToId).then((res) => {
-      setNewGivingTo(res.data["user"]);
-    });
+      await apiService.getGuest(res.data["giving_to"]).then(async (res) => {
+        if (!res.data["user"]) return;
 
-    if (!newGivingTo) return;
-
-    await apiService.getUser(newGivingTo).then((res) => {
-      lobbyStore.setGivingTo(res.name);
-      lobbyStore.setPref(res.preferences);
+        await apiService.getUser(res.data["user"]).then((res) => {
+          lobbyStore.setGivingTo(res.name);
+          lobbyStore.setPref(res.preferences);
+        });
+      });
     });
+    
   };
 
   return (
@@ -69,7 +59,7 @@ export const LobbyPlay = observer(({ giving, isAdmin }: T.LobbyPlayProps) => {
             buttonStyle="shuffle"
             label="Перемешать"
             className={styles.button}
-            onClick={onClickStart}
+            onClick={onShuffleClick}
           />
           <Help className={styles.help} message="Появились новые гости?" />
         </>
